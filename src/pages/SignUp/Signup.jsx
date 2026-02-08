@@ -10,7 +10,7 @@ export default function Signup() {
   
   const SendData = async (values) => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BURL}/auth/Account/Register`, values);
+      const response = await axios.post(`${import.meta.env.VITE_BURL}auth/Account/Register`, values);
       console.log(response);
     } catch (error) {
       SetError(true);
@@ -22,10 +22,9 @@ export default function Signup() {
     <Box sx={{ display: 'flex', gap: 3, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} >
       <Typography component="h1" variant='h3'>Create your account </Typography>
 
-      {/* عرض الخطأ إذا كان موجود */}
-      {Error && <Alert severity="error">حدث خطأ أثناء التسجيل. يرجى المحاولة مرة أخرى.</Alert>}
+      
 
-      <form onSubmit={handleSubmit(SendData)} sx={{ display: 'flex', flexDirection: 'column', gap: 3, alignItems: 'center' }}>
+      <Box component="form" onSubmit={handleSubmit(SendData)} sx={{ display: 'flex', flexDirection: 'column', gap: 3, alignItems: 'center' }}>
         <TextField {...register('email')} id="outlined-basic" label="Email" variant="outlined" sx={{ width: 600 }} />
         <TextField {...register('userName')} id="outlined-basic" label="UserName" variant="outlined" sx={{ width: 600 }} />
         <TextField {...register('fuuName')} id="outlined-basic" label="Full Name" variant="outlined" sx={{ width: 600 }} />
@@ -33,7 +32,7 @@ export default function Signup() {
         <TextField {...register('phoneNumber')} id="outlined-basic" label="Phone Number" variant="outlined" type="tel" sx={{ width: 600 }} />
 
         <Button variant="contained" type='submit'>Register</Button>
-      </form>
+      </Box>
     </Box>
   );
 }
