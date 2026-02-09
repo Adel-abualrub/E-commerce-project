@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Link } from '@mui/material';
+import Cart from '../../pages/cart/Cart';
 
 const Navbar = () => {
   const location = useLocation();
@@ -31,10 +32,11 @@ const Navbar = () => {
             <Link component={RouterLink} color='#000000' underline={getUnderLineAtCurrrentPage('/about')} to={'/about'}>About</Link>
             <Link component={RouterLink} color='#000000' underline={getUnderLineAtCurrrentPage('/signup')} to={'/signup'}>Sign Up</Link>
          <IconButton sx={{ color: 'black' }}>
+          
   <FavoriteBorderIcon />
 </IconButton>
- <IconButton sx={{ color: 'black' }}>
-  < ShoppingCartIcon/>
+ <IconButton  component={RouterLink} to={'/Cart'} sx={{ color: 'black' }}>
+  < ShoppingCartIcon />
 </IconButton>
           </Box>
         </Toolbar>
