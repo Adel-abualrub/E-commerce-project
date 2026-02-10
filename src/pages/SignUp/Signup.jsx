@@ -5,6 +5,7 @@ import axios from 'axios';
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ValidationSchema } from '../../validation/RegisterValidation';
+import { Link } from 'react-router-dom';
 export default function Signup() {
 
 
@@ -39,8 +40,9 @@ resolver: yupResolver(ValidationSchema)
         <TextField {...register('fullName')} error={!!errors.fullName} helperText={errors.fullName?.message} id="outlined-basic" label="Full Name" variant="outlined" sx={{ width: 600 }} />
         <TextField {...register('password')} error={!!errors.password} helperText={errors.password?.message}  id="outlined-password-input" label="Password" type="password" autoComplete="current-password" sx={{ width: 600 }} />
         <TextField {...register('phoneNumber')} error={!!errors.phoneNumber} helperText={errors.phoneNumber?.message} id="outlined-basic" label="Phone Number" variant="outlined" type="tel" sx={{ width: 600 }} />
-
-        <Button variant="contained" type='submit'>Register</Button>
+       <Button variant="contained" type='submit'>Register</Button>
+<Typography component={Link} variant='a' to={'/login'}>Do you have an account?</Typography>
+       
       </Box>
     </Box>
   );
