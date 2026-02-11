@@ -4,10 +4,11 @@ import { Box, Button, TextField, Typography, Alert } from '@mui/material'; // إ
 import axios from 'axios';
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ValidationSchema } from '../../validation/RegisterValidation';
+
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-  
+  import { ValidationLoginSchema } from '../../validation/LoginValidation';
+
 export default function Login() {
 
 
@@ -19,7 +20,10 @@ const response=await axios.post(`${import.meta.env.VITE_BURL}auth/Account/Login`
     console.log(error);
   }
 }
-const {register,handleSubmit}=useForm({});
+const {register,handleSubmit, formState:{errors}}=useForm({
+resolver: yupResolver(ValidationLoginSchema)
+
+});
 
   return (
    
@@ -29,9 +33,9 @@ const {register,handleSubmit}=useForm({});
       
 
       <Box component="form" onSubmit={handleSubmit(SendLoginData)}  sx={{ display: 'flex', flexDirection: 'column', gap: 3, alignItems: 'center' }}>
-        <TextField {...register('email')}  id="outlined-basic" label="Email" variant="outlined" sx={{ width: 600 }} />
+        <TextField {...register('email')} error={!!errors.email} helperText={errors.email?.message}  id="outlined-basic" label="Email" variant="outlined" sx={{ width: 600 }} />
 
-        <TextField {...register('password')}  id="outlined-password-input" label="Password" type="password" autoComplete="current-password" sx={{ width: 600 }} />
+        <TextField {...register('password')}  error={!!errors.password} helperText={errors.password?.message} id="outlined-password-input" label="Password" type="password" autoComplete="current-password" sx={{ width: 600 }} />
      
        <Button variant="contained" type='submit'>lOGIN</Button>
 <Typography component={Link} variant='a' to={'/signup'}>Dont Have an account?sign up now</Typography>
