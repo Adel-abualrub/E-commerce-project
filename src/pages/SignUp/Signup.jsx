@@ -14,19 +14,33 @@ export default function Signup() {
 
 
   const [Error, SetError] = useState(false);
+  const [ServerError,SetServerError]=useState([]);
   const { register, handleSubmit,formState :{errors} } = useForm({
-resolver: yupResolver(ValidationSchema)
+resolver: yupResolver(ValidationSchema),
+mode:'onBlur'
 
 
   });
   const SendData = async (values) => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BURL}auth/Account/Register`, values);
+      const response = await axios.post(`${import.meta.env.VITE_BURL}auth/Accssount/Register`, values);
       console.log(response);
     } catch (error) {
-      SetError(true);
-      console.log(error, "error");
+     SetError(true);
+     SetServerError(error.response.data.errors)
+    
+    
     }
+  }
+
+  if(Error && !(!!ServerError)){
+return (
+<Box>
+  There ar an error
+   </Box>
+
+)
+
   }
 
   return (
@@ -41,6 +55,15 @@ resolver: yupResolver(ValidationSchema)
         <TextField {...register('fullName')} error={!!errors.fullName} helperText={errors.fullName?.message} id="outlined-basic" label="Full Name" variant="outlined" sx={{ width: 600 }} />
         <TextField {...register('password')} error={!!errors.password} helperText={errors.password?.message}  id="outlined-password-input" label="Password" type="password" autoComplete="current-password" sx={{ width: 600 }} />
         <TextField {...register('phoneNumber')} error={!!errors.phoneNumber} helperText={errors.phoneNumber?.message} id="outlined-basic" label="Phone Number" variant="outlined" type="tel" sx={{ width: 600 }} />
+{
+  ServerError?.length >0 &&(
+    <Box mt={2} color={'red'}> 
+   { ServerError.map((err)=><Typography>{err}</Typography>)}
+
+    </Box>
+  )  
+}
+
        <Button variant="contained" type='submit'>Register</Button>
 <Typography component={Link} variant='a' to={'/login'}>Do you have an account?</Typography>
        
