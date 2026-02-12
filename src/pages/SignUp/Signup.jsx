@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, TextField, Typography, Alert } from '@mui/material'; // إضافة Alert
+import { Box, Button, TextField, Typography, Alert, CircularProgress } from '@mui/material'; // إضافة Alert
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import * as yup from 'yup'
@@ -15,7 +15,7 @@ export default function Signup() {
 
   const [Error, SetError] = useState(false);
   const [ServerError,SetServerError]=useState([]);
-  const { register, handleSubmit,formState :{errors} } = useForm({
+  const { register, handleSubmit,formState :{errors,isSubmitting} } = useForm({
 resolver: yupResolver(ValidationSchema),
 mode:'onBlur'
 
@@ -67,7 +67,7 @@ return (
   )  
 }
 
-       <Button variant="contained" type='submit'>Register</Button>
+       <Button variant="contained" disabled={isSubmitting} type='submit'> {isSubmitting?<CircularProgress/>:'Register'}</Button>
 <Typography component={Link} variant='a' to={'/login'}>Do you have an account?</Typography>
        
       </Box>
