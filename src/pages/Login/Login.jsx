@@ -10,20 +10,36 @@ import { useForm } from 'react-hook-form';
   import { ValidationLoginSchema } from '../../validation/LoginValidation';
 
 export default function Login() {
-
+const [ServerError,SetServerError]=useState("");
+const [Error,SetError]=useState(false);
 
 const SendLoginData=async (values)=>{
   try{
 const response=await axios.post(`${import.meta.env.VITE_BURL}auth/Account/Login`,values);
   }
   catch(error){
-    console.log(error);
+  if(error.status===500||error.status===404)
+     SetError(true);
+     else if(error.status===400){
+    SetServerError(error.response.data.message);
+ 
   }
+    }
 }
 const {register,handleSubmit, formState:{errors}}=useForm({
 resolver: yupResolver(ValidationLoginSchema)
 
 });
+
+if(Error){
+return (
+<Box color="red">
+  Something went wrong. Please try again later.
+</Box>
+
+)
+
+  }
 
   return (
    
@@ -37,6 +53,15 @@ resolver: yupResolver(ValidationLoginSchema)
 
         <TextField {...register('password')}  error={!!errors.password} helperText={errors.password?.message} id="outlined-password-input" label="Password" type="password" autoComplete="current-password" sx={{ width: 600 }} />
      
+{
+  ServerError?.length >0 &&(
+    <Box mt={2} color={'red'}> 
+   { <Typography>{ServerError}</Typography>}
+
+    </Box>
+  )  
+}
+
        <Button variant="contained" type='submit'>lOGIN</Button>
 <Typography component={Link} variant='a' to={'/signup'}>Dont Have an account?sign up now</Typography>
        

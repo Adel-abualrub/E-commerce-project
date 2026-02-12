@@ -23,21 +23,24 @@ mode:'onBlur'
   });
   const SendData = async (values) => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BURL}auth/Accssount/Register`, values);
-      console.log(response);
+      const response = await axios.post(`${import.meta.env.VITE_BURL}auth/Account/Register`, values);
+    
     } catch (error) {
+      
+    if(error.status===500||error.status===404)
      SetError(true);
-     SetServerError(error.response.data.errors)
+     else if(error.status===400)
+     SetServerError(error.response.data.errors);
     
     
     }
   }
 
-  if(Error && !(!!ServerError)){
+if(Error){
 return (
-<Box>
-  There ar an error
-   </Box>
+<Box color="red">
+  Something went wrong. Please try again later.
+</Box>
 
 )
 
