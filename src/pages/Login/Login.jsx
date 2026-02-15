@@ -13,13 +13,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ValidationLoginSchema } from "../../validation/LoginValidation";
+import axiosInstanse from "../../api/axiosInstanse";
 export default function Login() {
   const [ServerError, SetServerError] = useState("");
   const [Error, SetError] = useState(false);
   const SendLoginData = async (values) => {
     try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BURL}auth/Account/Login`,
+      const response = await axiosInstanse.post(
+      'auth/Account/Login',
         values,
       );
     } catch (error) {

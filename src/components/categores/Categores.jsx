@@ -16,7 +16,7 @@ const{data,isLoading,isError,error}=useCategores();
   return (
     <Box>
       {data.response.map(category =>
-        <Box>{category.name}</Box>
+        <Box>{category.id}</Box>
       )}
     </Box>
   )

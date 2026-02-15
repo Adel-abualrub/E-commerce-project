@@ -6,6 +6,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ValidationSchema } from '../../validation/RegisterValidation';
 import { Link } from 'react-router-dom';
+import axiosInstanse from '../../api/axiosInstanse';
 
 export default function Signup() {
 
@@ -23,15 +24,16 @@ mode:'onBlur'
   });
   const SendData = async (values) => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_BURL}auth/Account/Register`, values);
+      const response = await axiosInstanse.post('auth/Account/Register', values);
     
     } catch (error) {
       
     if(error.status===500||error.status===404)
      SetError(true);
-     else if(error.status===400)
-     SetServerError(error.response.data.errors);
+     else if(error.status===400){
     
+     SetServerError(error.response.data.errors);
+     }
     
     }
   }
@@ -67,7 +69,7 @@ return (
   )  
 }
 
-       <Button variant="contained" disabled={isSubmitting} type='submit'> {isSubmitting?<CircularProgress/>:'Register'}</Button>
+<Button variant="contained" disabled={isSubmitting} type='submit'> {isSubmitting?<CircularProgress/>:'Register'}</Button>
 <Typography component={Link} variant='a' to={'/login'}>Do you have an account?</Typography>
        
       </Box>
