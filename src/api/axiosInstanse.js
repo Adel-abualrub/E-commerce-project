@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const axiosInstanse=await axios.create({
+const axiosInstanse=axios.create({
 baseURL:`${import.meta.env.VITE_BURL}`,
 headers:{
     'Accept-Language':'en'

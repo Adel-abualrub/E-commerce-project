@@ -23,6 +23,11 @@ export default function Login() {
       'auth/Account/Login',
         values,
       );
+
+      if(response.status===200){
+
+        localStorage.setItem('AccessToken',response.data.accessToken);
+      }
     } catch (error) {
       if (error.status === 500 || error.status === 404) SetError(true);
       else if (error.status === 400) {
@@ -103,3 +108,6 @@ export default function Login() {
     </Box>
   );
 }
+
+
+
