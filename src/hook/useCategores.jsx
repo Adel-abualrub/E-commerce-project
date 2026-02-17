@@ -12,7 +12,7 @@ export default function useCategores() {
   }
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['categories'],
+    queryKey: ['categories','en'],
     queryFn: getCategories,
     staleTime: 1000*60*10
   });

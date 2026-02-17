@@ -11,12 +11,12 @@ const{data,isLoading,isError,error}=useCategores();
   if (isLoading) return <CircularProgress />
   if (isError) return <Box color={'red'}>{error.message}</Box>
 
-  
+
 
   return (
     <Box>
       {data.response.map(category =>
-        <Box>{category.id}</Box>
+        <Box>{category.name}</Box>
       )}
     </Box>
   )

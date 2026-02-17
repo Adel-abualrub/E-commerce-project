@@ -11,12 +11,14 @@ import Profile from "./pages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
+    
     path: "/",
     element: <MainLayout />,
     children: [
       {
         index: true,
         element: <HomePage />,
+        
       },
       {
         path:'home',
