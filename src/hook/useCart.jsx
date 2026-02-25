@@ -6,8 +6,9 @@ import CartAxiosInstanse from "../api/cartAxiosInstanse";
 export default function useCart() {
   const getItemsInCart = async () => {
     const response = await CartAxiosInstanse.get("Carts");
-
+  
     return response.data;
+  
   };
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["cart"],

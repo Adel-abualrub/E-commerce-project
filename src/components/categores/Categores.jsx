@@ -14,8 +14,10 @@ const{data,isLoading,isError,error}=useCategores();
 
 
   return (
+   
     <Box>
-      {data.response.map(category =>
+      
+      {data.response.data.map(category =>
         <Box>{category.name}</Box>
       )}
     </Box>
