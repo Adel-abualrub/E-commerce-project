@@ -8,6 +8,7 @@ import Signup from "./pages/SignUp/Signup";
 import Login from "./pages/Login/Login";
 import HomePage from "./pages/Home/HomePage";
 import Profile from "./pages/Profile/Profile";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path:'profile',
         element:<Profile/>
+      },
+      {
+        path:'product/:id',
+        element: <ProductDetails/>
       }
 
     ],

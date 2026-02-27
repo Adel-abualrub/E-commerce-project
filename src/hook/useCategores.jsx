@@ -4,10 +4,10 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import axiosInstanse from '../api/axiosInstanse';
 
-export default function useCategores() {
+export default function useCategores(limit) {
     
   const getCategories = async () => {
-    const response = await axiosInstanse.get('Categories');
+    const response = await axiosInstanse.get(`Categories?limit=${limit}`);
     return response.data;
   }
 
