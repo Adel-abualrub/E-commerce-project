@@ -41,7 +41,7 @@ const Navbar = () => {
               component={RouterLink}
               color="#000000"
               underline={getUnderLineAtCurrrentPage("/home")}
-              to={"/home"}
+              to={"/"}
             >
               Home
             </Link>
