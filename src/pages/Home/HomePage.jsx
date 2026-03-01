@@ -3,7 +3,7 @@ import Categores from '../../components/categores/Categores'
 import { useCustomersCount } from '../../store/useCustomersCount'
 import Typography from '@mui/material/Typography';
 import useProducts from './../../hook/useProducts';
-import Products from '../../components/products/products';
+import Products from '../../components/products/Products';
 
 export default function HomePage() {
 
