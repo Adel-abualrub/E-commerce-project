@@ -9,20 +9,14 @@ import { Link } from 'react-router-dom';
 import axiosInstanse from '../../api/axiosInstanse';
 
 export default function Signup() {
-
-
-
-
-
   const [Error, SetError] = useState(false);
   const [ServerError,SetServerError]=useState([]);
   const { register, handleSubmit,formState :{errors,isSubmitting} } = useForm({
 resolver: yupResolver(ValidationSchema),
 mode:'onBlur'
-
-
   });
   const SendData = async (values) => {
+    SetServerError([]);
     try {
       const response = await axiosInstanse.post('auth/Account/Register', values);
     

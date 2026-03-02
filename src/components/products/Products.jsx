@@ -11,6 +11,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { Link } from "react-router-dom";
+import Product from "../../ui/product/Product";
 
 export default function Products() {
   const { data, isLoading, isError, error } = useProducts();
@@ -24,15 +25,7 @@ export default function Products() {
       </Typography>
       <Grid container spacing={1} >
         {data.response.data.map((product) => (
-          <Grid item size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
-            {" "}
-         <Link to={`product/${product.id}`}   style={{ textDecoration: "none", color: "inherit" }} >
-            <Card sx={{ color: "red", textAlign: "center", textDecoration: "none" }}>
-              <CardContent>{product.name}</CardContent>
-              <CardMedia component={"img"} image={product.image}></CardMedia>
-            </Card>
-         </Link>
-          </Grid>
+         <Product product={product}></Product>
         ))}
       </Grid>
     </Box>

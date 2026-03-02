@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import Category from '../../ui/category/Category';
 
 
 export default function Categories() {
@@ -30,13 +31,7 @@ const{data,isLoading,isError,error}=useCategores(100);
            <Grid item size={{xs:12,sm:6,md:4,lg:3}}> 
            <Card sx={{color:"red",justifyContent:'center',alignItems:'center',textAlign:'center'}}>
             
-            <CardContent>
-              <Typography component={'h3'} variant='h3'>
-                
-                {category.name} 
-              </Typography>
-            
-            </CardContent>
+          <Category category={category}/>
             
             
             
