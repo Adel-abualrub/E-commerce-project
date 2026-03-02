@@ -14,7 +14,10 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ValidationLoginSchema } from "../../validation/LoginValidation";
 import axiosInstanse from "../../api/axiosInstanse";
+import useAuthStore from "../../store/useAuthStore";
 export default function Login() {
+  
+  const setToken = useAuthStore( (state) =>state.setToken);
   const [ServerError, SetServerError] = useState("");
   const [Error, SetError] = useState(false);
   const SendLoginData = async (values) => {
@@ -26,7 +29,7 @@ export default function Login() {
 
       if(response.status===200){
 
-        localStorage.setItem('AccessToken',response.data.accessToken);
+        setToken(response.data.accessToken);
       }
     } catch (error) {
       if (error.status === 500 || error.status === 404) SetError(true);
