@@ -9,6 +9,7 @@ import Login from "./pages/Login/Login";
 import HomePage from "./pages/Home/HomePage";
 import Profile from "./pages/Profile/Profile";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import ProtectedRouter from "./ProtectedRouter";
 
 const router = createBrowserRouter([
   {
@@ -28,7 +29,13 @@ const router = createBrowserRouter([
       },
       {
         path:'cart',
-        element: <Cart/>
+
+        element:
+        <ProtectedRouter>
+           <Cart/>
+        </ProtectedRouter>
+        
+       
       },
       {
         path:'contact',

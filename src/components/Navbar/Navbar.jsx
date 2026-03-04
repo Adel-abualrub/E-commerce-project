@@ -8,12 +8,13 @@ import React from "react";
 import IconButton from "@mui/material/IconButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Link } from "@mui/material";
+import { Button, Link } from "@mui/material";
 import Cart from "../../pages/cart/Cart";
+import useAuthStore from "../../store/useAuthStore";
 
 const Navbar = () => {
   const location = useLocation();
-
+  const LogOut = useAuthStore((state)=>state.LogOut);
   const getUnderLineAtCurrrentPage = (path) => {
     return location.pathname === path ? "always" : "none";
   };
@@ -68,6 +69,14 @@ const Navbar = () => {
               to={"/signup"}
             >
               Sign Up
+            </Link>
+             <Link 
+              component={RouterLink}
+              color="#000000"
+              underline={getUnderLineAtCurrrentPage("/signup")}
+             onClick={LogOut}
+            >
+              LogOUt
             </Link>
             <IconButton sx={{ color: "black" }}>
               <FavoriteBorderIcon />
