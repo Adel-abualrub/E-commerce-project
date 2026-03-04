@@ -8,6 +8,5 @@ export default function ProtectedRouter({children}) {
     return <Navigate to='/login'/>
   }
   else
-    return
-    children
+    return children;
 }
