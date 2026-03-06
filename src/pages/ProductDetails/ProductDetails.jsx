@@ -15,10 +15,15 @@ import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import useAddToCart from "../../hook/useAddToCart";
 
 export default function ProductDetails() {
   const { id } = useParams();
   const { data, isLoading, isError, error } = useProductDetails(id);
+  const {mutate,isPending}=useAddToCart();
+
+
+
 
   if (isLoading) {
     return (
@@ -27,6 +32,7 @@ export default function ProductDetails() {
       </Box>
     );
   }
+
 
   if (isError) {
     return (
@@ -119,11 +125,16 @@ export default function ProductDetails() {
                 <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
                   <Button
                     variant="contained"
-                    disabled={!inStock}
+                    disabled={!inStock||isPending}
                     sx={{ flex: 1, py: 1.2, borderRadius: 2 }}
-                    onClick={() => {
-                      // 👇 اربطها مع الكارت عندك (zustand / context / redux)
-                      console.log("Add to cart:", product.id);
+                    onClick={()=>{
+mutate({
+pId:product.id,
+count:1
+
+})
+
+
                     }}
                   >
                     Add to Cart

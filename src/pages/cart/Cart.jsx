@@ -16,8 +16,9 @@ console.log("Hi")
 
 
   return (
-    
+   
    <>
+    {console.log(data)}
    Hi you are in cart
    </>
     
