@@ -10,11 +10,12 @@ import TableRow from "@mui/material/TableRow";
 import TableBody from "@mui/material/TableBody";
 import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
+import useClearCart from "../../hook/useClearCart";
 
 export default function Cart() {
   const { data, isLoading, isError, error } = useCart();
   const { mutate: DeleteItem, isPending: DeleteItemPending } = useDeleteFromCart();
-
+const {mutate:ClearCart,isPending:ClearCartPending}=useClearCart();
   if (isLoading) return <CircularProgress />;
   if (isError) return <Box color="red">{error.message}</Box>;
 
@@ -60,6 +61,9 @@ export default function Cart() {
           </TableBody>
         </Table>
       </TableContainer>
+<Button disabled={ClearCartPending} color="error" variant="contained"sx={{mt:1}} onClick={()=>ClearCart()}> Clear cart</Button>
+
+
     </Box>
   );
 }
