@@ -11,11 +11,21 @@ import TableBody from "@mui/material/TableBody";
 import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
 import useClearCart from "../../hook/useClearCart";
+import IconButton from '@mui/material/IconButton';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
+import useUpdateQuantity from "../../hook/useUpdateQuantity";
+
+
 
 export default function Cart() {
   const { data, isLoading, isError, error } = useCart();
   const { mutate: DeleteItem, isPending: DeleteItemPending } = useDeleteFromCart();
-const {mutate:ClearCart,isPending:ClearCartPending}=useClearCart();
+  const {mutate:ClearCart,isPending:ClearCartPending}=useClearCart();
+  const {mutate:UpdateItemQuantity,isPending:PendingUpdateItemQuantity}=useUpdateQuantity();
+
+
+
   if (isLoading) return <CircularProgress />;
   if (isError) return <Box color="red">{error.message}</Box>;
 
@@ -39,7 +49,30 @@ const {mutate:ClearCart,isPending:ClearCartPending}=useClearCart();
             {items.map((item) => (
               <TableRow key={item.productId}>
                 <TableCell>{item.productName}</TableCell>
-                <TableCell>{item.count}</TableCell>
+                <TableCell>
+                  <Box>
+<IconButton disabled={PendingUpdateItemQuantity} onClick={() =>
+  UpdateItemQuantity({
+  ProductId: item.productId,
+  NewCount: item.count - 1,
+  })
+}>
+<RemoveIcon/>
+</IconButton>
+{item.count}
+<IconButton disabled={PendingUpdateItemQuantity} onClick={() =>
+  UpdateItemQuantity({
+    ProductId: item.productId,
+  NewCount: item.count + 1,
+  })
+}>
+<AddIcon/>
+</IconButton>
+
+                  </Box>
+                  
+                  
+                  </TableCell>
                 <TableCell>{item.price}$</TableCell>
                 <TableCell>{item.totalPrice}$</TableCell>
                 <TableCell>
