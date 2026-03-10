@@ -7,16 +7,23 @@ import React from "react";
 import IconButton from "@mui/material/IconButton";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Button, Link } from "@mui/material";
+import { Badge, Button, CircularProgress, Link } from "@mui/material";
 import Cart from "../../pages/cart/Cart";
 import useAuthStore from "../../store/useAuthStore";
 import Swal from "sweetalert2";
+import useCart from "../../hook/useCart";
 
 
 
 const Navbar = () => {
   const location = useLocation();
   const LogOut = useAuthStore((state) => state.LogOut);
+  const { data, isLoading, isError, error }=useCart();
+  
+  const Items=data?.items?.length||0;
+  console.log(Items);
+  const token=useAuthStore((state)=>state.token);
+
   const HandleLogout=()=>{
 
 Swal.fire({
@@ -40,24 +47,28 @@ Swal.fire({
 });
 
   }
+
+
   const getUnderLineAtCurrrentPage = (path) => {
     return location.pathname === path ? "always" : "none";
   };
+
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      {" "}
+     
       <AppBar position="static" sx={{ backgroundColor: "white" }}>
-        {" "}
+       
         <Toolbar>
-          {" "}
+       
           <Typography
             variant="h6"
             component="div"
             sx={{ flexGrow: 1, color: "#000000" }}
           >
-            {" "}
-            Exclusive{" "}
-          </Typography>{" "}
+           
+            Exclusive
+          </Typography>
           <Box
             sx={{
               display: "flex",
@@ -66,66 +77,79 @@ Swal.fire({
               alignItems: "center",
             }}
           >
-            {" "}
+        
             <Link
               component={RouterLink}
               color="#000000"
               underline={getUnderLineAtCurrrentPage("/")}
               to={"/"}
             >
-              {" "}
-              Home{" "}
-            </Link>{" "}
+              
+              Home
+            </Link>
             <Link
               component={RouterLink}
               color="#000000"
               underline={getUnderLineAtCurrrentPage("/contact")}
               to={"/contact"}
             >
-              {" "}
-              Contact{" "}
-            </Link>{" "}
+           
+              Contact
+            </Link>
             <Link
               component={RouterLink}
               color="#000000"
               underline={getUnderLineAtCurrrentPage("/about")}
               to={"/about"}
             >
-              {" "}
-              About{" "}
-            </Link>{" "}
+            
+              About
+            </Link>
             <Link
               component={RouterLink}
               color="#000000"
               underline={getUnderLineAtCurrrentPage("/signup")}
               to={"/signup"}
             >
-              {" "}
-              Sign Up{" "}
-            </Link>{" "}
+              
+              Sign Up
+            </Link>
             <Link
               component={Button}
               color="#000000"
               onClick={HandleLogout}
             >
-              {" "}
-              LogOUt{" "}
-            </Link>{" "}
-            <IconButton sx={{ color: "black" }}>
-              {" "}
-              <FavoriteBorderIcon />{" "}
-            </IconButton>{" "}
-            <IconButton
-              component={RouterLink}
-              to={"/Cart"}
-              sx={{ color: "black" }}
-            >
-              {" "}
-              <ShoppingCartIcon />{" "}
-            </IconButton>{" "}
-          </Box>{" "}
-        </Toolbar>{" "}
-      </AppBar>{" "}
+             
+              LogOUt
+            </Link>
+
+
+       
+
+    <IconButton sx={{ color: "black" }}>
+      <FavoriteBorderIcon />
+    </IconButton>
+
+    <IconButton
+      component={RouterLink}
+      to={"/Cart"}
+      sx={{ color: "black" }}
+    >
+      <Badge badgeContent={Items} color="primary">
+        <ShoppingCartIcon />
+      </Badge>
+    </IconButton>
+  
+
+          
+
+
+           
+ 
+            
+          </Box>
+        </Toolbar>
+      </AppBar>
     </Box>
   );
 };

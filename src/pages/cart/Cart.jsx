@@ -11,20 +11,19 @@ import TableBody from "@mui/material/TableBody";
 import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
 import useClearCart from "../../hook/useClearCart";
-import IconButton from '@mui/material/IconButton';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
+import IconButton from "@mui/material/IconButton";
+import RemoveIcon from "@mui/icons-material/Remove";
+import AddIcon from "@mui/icons-material/Add";
 import useUpdateQuantity from "../../hook/useUpdateQuantity";
-
-
+import Quantity from './../../components/Quantity/Quantity';
 
 export default function Cart() {
   const { data, isLoading, isError, error } = useCart();
-  const { mutate: DeleteItem, isPending: DeleteItemPending } = useDeleteFromCart();
-  const {mutate:ClearCart,isPending:ClearCartPending}=useClearCart();
-  const {mutate:UpdateItemQuantity,isPending:PendingUpdateItemQuantity}=useUpdateQuantity();
-
-
+  const { mutate: DeleteItem, isPending: DeleteItemPending } =
+    useDeleteFromCart();
+  const { mutate: ClearCart, isPending: ClearCartPending } = useClearCart();
+  const { mutate: UpdateItemQuantity, isPending: PendingUpdateItemQuantity } =
+    useUpdateQuantity();
 
   if (isLoading) return <CircularProgress />;
   if (isError) return <Box color="red">{error.message}</Box>;
@@ -50,29 +49,8 @@ export default function Cart() {
               <TableRow key={item.productId}>
                 <TableCell>{item.productName}</TableCell>
                 <TableCell>
-                  <Box>
-<IconButton disabled={PendingUpdateItemQuantity} onClick={() =>
-  UpdateItemQuantity({
-  ProductId: item.productId,
-  NewCount: item.count - 1,
-  })
-}>
-<RemoveIcon/>
-</IconButton>
-{item.count}
-<IconButton disabled={PendingUpdateItemQuantity} onClick={() =>
-  UpdateItemQuantity({
-    ProductId: item.productId,
-  NewCount: item.count + 1,
-  })
-}>
-<AddIcon/>
-</IconButton>
-
-                  </Box>
-                  
-                  
-                  </TableCell>
+                 <Quantity productId={item.productId}count={item.count}/>
+                </TableCell>
                 <TableCell>{item.price}$</TableCell>
                 <TableCell>{item.totalPrice}$</TableCell>
                 <TableCell>
@@ -94,9 +72,16 @@ export default function Cart() {
           </TableBody>
         </Table>
       </TableContainer>
-<Button disabled={ClearCartPending} color="error" variant="contained"sx={{mt:1}} onClick={()=>ClearCart()}> Clear cart</Button>
-
-
+      <Button
+        disabled={ClearCartPending}
+        color="error"
+        variant="contained"
+        sx={{ mt: 1 }}
+        onClick={() => ClearCart()}
+      >
+        {" "}
+        Clear cart
+      </Button>
     </Box>
   );
 }
