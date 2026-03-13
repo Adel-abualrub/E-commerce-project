@@ -10,6 +10,7 @@ import HomePage from "./pages/Home/HomePage";
 import Profile from "./pages/Profile/Profile";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import ProtectedRouter from "./ProtectedRouter";
+import CheckOut from "./pages/CheckOut/CheckOut";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,13 @@ const router = createBrowserRouter([
         </ProtectedRouter>
         
        
+      },
+      { path:'checkout',
+        element:
+        <ProtectedRouter>
+<CheckOut/>
+        </ProtectedRouter>
+
       },
       {
         path:'contact',

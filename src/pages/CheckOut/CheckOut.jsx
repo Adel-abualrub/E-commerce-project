@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useCart from "./../../hook/useCart";
 import useDeleteFromCart from "./../../hook/useDeleteFromCart";
 import Box from "@mui/material/Box";
@@ -15,18 +15,17 @@ import IconButton from "@mui/material/IconButton";
 import RemoveIcon from "@mui/icons-material/Remove";
 import AddIcon from "@mui/icons-material/Add";
 import useUpdateQuantity from "../../hook/useUpdateQuantity";
-import Quantity from './../../components/Quantity/Quantity';
+import Quantity from "./../../components/Quantity/Quantity";
 
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import useCheckOut from "../../hook/useCheckOut";
+import { useMutation } from '@tanstack/react-query';
 
-export default function Cart() {
+export default function CheckOut() {
   const { data, isLoading, isError, error } = useCart();
-  const { mutate: DeleteItem, isPending: DeleteItemPending } =
-    useDeleteFromCart();
-  const { mutate: ClearCart, isPending: ClearCartPending } = useClearCart();
-  const { mutate: UpdateItemQuantity, isPending: PendingUpdateItemQuantity } =
-    useUpdateQuantity();
-
+const [PaymentMethod,setPaymentMethod]=useState('Cash');
+const {mutate:Payment,isPending:PaymentPending}=useCheckOut();
   if (isLoading) return <CircularProgress />;
   if (isError) return <Box color="red">{error.message}</Box>;
 
@@ -42,7 +41,6 @@ export default function Cart() {
               <TableCell>Total Count</TableCell>
               <TableCell>Price</TableCell>
               <TableCell>Total Price</TableCell>
-              <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
 
@@ -50,21 +48,9 @@ export default function Cart() {
             {items.map((item) => (
               <TableRow key={item.productId}>
                 <TableCell>{item.productName}</TableCell>
-                <TableCell>
-                 <Quantity productId={item.productId}count={item.count}/>
-                </TableCell>
+                <TableCell>{item.count}</TableCell>
                 <TableCell>{item.price}$</TableCell>
                 <TableCell>{item.totalPrice}$</TableCell>
-                <TableCell>
-                  <Button
-                    disabled={DeleteItemPending}
-                    color="error"
-                    variant="contained"
-                    onClick={() => DeleteItem(item.productId)}
-                  >
-                    Delete product
-                  </Button>
-                </TableCell>
               </TableRow>
             ))}
 
@@ -74,31 +60,40 @@ export default function Cart() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Box  sx={{display:"flex",gap:1}}>
-      <Button
-        disabled={ClearCartPending}
-        color="error"
-        variant="contained"
-        sx={{ mt: 1 }}
-        onClick={() => ClearCart()}
-      >
-        {" "}
-        Clear cart
-      </Button>
-      <Button 
-      component={Link}
-      to="/checkout"
-        disabled={ClearCartPending}
-        color="success"
-        variant="contained"
-        sx={{ mt: 1 }}
-       
-      >
-        
-        {" "}
-        GO TO CHECKOUT
-      </Button>
-</Box>
+      
+      <Box>
+
+<FormControl fullWidth>
+  <InputLabel id="PaymentMethod">Payment Method</InputLabel>
+  <Select
+    labelId="PaymentMethod"
+    id="PaymentMethod"
+    value={PaymentMethod}
+    onChange={(e)=>{setPaymentMethod(e.target.value);
+        console.log(PaymentMethod);
+
+    }}
+  >
+    <MenuItem value={'Visa'}>Visa</MenuItem>
+    <MenuItem value={'Cash'}>Cash</MenuItem>
+  
+  </Select>
+</FormControl>
+
+
+
+  <Button
+          component={Link}
+          to="/checkout"
+          color="success"
+          variant="contained"
+          sx={{ mt: 1 }}
+         onClick={()=>Payment(PaymentMethod)} 
+        >
+          Pay Now
+        </Button>
+
+      </Box>
     </Box>
   );
 }
