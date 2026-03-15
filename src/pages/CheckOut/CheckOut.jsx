@@ -84,7 +84,7 @@ const {mutate:Payment,isPending:PaymentPending}=useCheckOut();
 
   <Button
           component={Link}
-          to="/checkout"
+      
           color="success"
           variant="contained"
           sx={{ mt: 1 }}

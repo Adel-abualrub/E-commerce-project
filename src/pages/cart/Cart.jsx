@@ -18,6 +18,7 @@ import useUpdateQuantity from "../../hook/useUpdateQuantity";
 import Quantity from './../../components/Quantity/Quantity';
 
 import { Link } from 'react-router-dom';
+import Typography from "@mui/material/Typography";
 
 export default function Cart() {
   const { data, isLoading, isError, error } = useCart();
@@ -31,7 +32,15 @@ export default function Cart() {
   if (isError) return <Box color="red">{error.message}</Box>;
 
   const items = data.items;
+  if(items.length===0){
+    return <Box>
+<Typography>
+  Your cart is empth
+</Typography>
+<Button variant="contained" component={Link} to='/'>Back to store</Button>
 
+    </Box>
+  }
   return (
     <Box component="section">
       <TableContainer>
