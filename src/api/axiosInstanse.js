@@ -1,10 +1,13 @@
 import axios from "axios";
+import i18n from "../i18next";
 
 const axiosInstanse=axios.create({
-baseURL:`${import.meta.env.VITE_BURL}`,
-headers:{
-    'Accept-Language':'en'
-}
+baseURL:`${import.meta.env.VITE_BURL}`
+
 
 });
+axiosInstanse.interceptors.request.use((config)=>{
+    config.headers["Accept-Language"]=i18n.language;
+    return config
+})
 export  default axiosInstanse;

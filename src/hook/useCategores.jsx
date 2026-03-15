@@ -3,6 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import axiosInstanse from '../api/axiosInstanse';
+import i18n from '../i18next';
 
 export default function useCategores(limit) {
     
@@ -12,7 +13,7 @@ export default function useCategores(limit) {
   }
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['categories','en'],
+    queryKey: ['categories',i18n.language],
     queryFn: getCategories,
     staleTime: 1000*60*10
   });
