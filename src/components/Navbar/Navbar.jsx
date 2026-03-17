@@ -14,17 +14,17 @@ import Swal from "sweetalert2";
 import useCart from "../../hook/useCart";
 import { useTranslation } from "react-i18next";
 import i18n from "../../i18next";
+import useThemeStore from './../../store/useTheamStore';
 
 const Navbar = () => {
-
   const location = useLocation();
   const LogOut = useAuthStore((state) => state.LogOut);
   const { t } = useTranslation();
   const { data, isLoading, isError, error } = useCart();
- const changeLanguage = (lng) => {
+  const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
-  }
-  
+  };
+
   const Items = data?.items?.length || 0;
   console.log(Items);
   const token = useAuthStore((state) => state.token);
@@ -37,13 +37,13 @@ const Navbar = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire({
           title: "Deleted!",
           text: "Your file has been deleted.",
-          icon: "success"
+          icon: "success",
         });
         LogOut();
       }
@@ -53,10 +53,12 @@ const Navbar = () => {
   const getUnderLineAtCurrrentPage = (path) => {
     return location.pathname === path ? "always" : "none";
   };
-
+  
+const mode=useThemeStore((state) =>state.mode);
+const ToggleTheme=useThemeStore((state)=>state.ToggleTheme);
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: "white" }}>
+      <AppBar position="static" sx={{ backgroundColor: mode === 'light' ? 'white' : '#121212' }}>
         <Toolbar>
           <Typography
             variant="h6"
@@ -109,16 +111,14 @@ const Navbar = () => {
             >
               {t("Signup")}
             </Link>
-
-            <Link
-              component={Button}
-              color="#000000"
-              onClick={HandleLogout}
-            >
+            <Button onClick={ToggleTheme} color="inherit" sx={{color:"black"}}>
+              {mode === "light" ? "Dark" : "Light"}
+            </Button>
+            <Link component={Button} color="#000000" onClick={HandleLogout}>
               {t("Logout")}
             </Link>
- <button onClick={() => changeLanguage('en')}>en</button>
-      <button onClick={() => changeLanguage('ar')}>ar</button>
+            <button onClick={() => changeLanguage("en")}>en</button>
+            <button onClick={() => changeLanguage("ar")}>ar</button>
             <IconButton sx={{ color: "black" }}>
               <FavoriteBorderIcon />
             </IconButton>
