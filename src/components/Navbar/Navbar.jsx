@@ -15,7 +15,7 @@ import useCart from "../../hook/useCart";
 import { useTranslation } from "react-i18next";
 import i18n from "../../i18next";
 import useThemeStore from './../../store/useTheamStore';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const Navbar = () => {
   const location = useLocation();
   const LogOut = useAuthStore((state) => state.LogOut);
@@ -26,7 +26,7 @@ const Navbar = () => {
   };
 
   const Items = data?.items?.length || 0;
-  console.log(Items);
+  
   const token = useAuthStore((state) => state.token);
 
   const HandleLogout = () => {
@@ -119,8 +119,14 @@ const ToggleTheme=useThemeStore((state)=>state.ToggleTheme);
             </Link>
             <button onClick={() => changeLanguage("en")}>en</button>
             <button onClick={() => changeLanguage("ar")}>ar</button>
-            <IconButton sx={{ color: "black" }}>
-              <FavoriteBorderIcon />
+            <IconButton
+              component={RouterLink}
+              to={"/profile"}
+              sx={{ color: "black" }}
+            >
+
+                <AccountCircleIcon/>
+            
             </IconButton>
 
             <IconButton

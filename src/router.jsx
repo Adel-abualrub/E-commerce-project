@@ -11,6 +11,9 @@ import Profile from "./pages/Profile/Profile";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import ProtectedRouter from "./ProtectedRouter";
 import CheckOut from "./pages/CheckOut/CheckOut";
+import Orders from "./pages/Profile/ordere/Orders";
+import Settings from "./pages/Profile/settings/Settings";
+import AcccountInfo from "./pages/Profile/accountInfo/AcccountInfo";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +47,30 @@ const router = createBrowserRouter([
 <CheckOut/>
         </ProtectedRouter>
 
+      },
+      {
+        path:'profile',
+        element:
+        <ProtectedRouter>
+<Profile/>
+
+        </ProtectedRouter>
+        ,children:[
+{
+  index:true,
+  element:<AcccountInfo/>
+},
+{
+  path:'orders',
+  element: <Orders/>
+},
+{
+  path:'settings',
+  element:<Settings/>
+}
+
+
+        ]
       },
       {
         path:'contact',
