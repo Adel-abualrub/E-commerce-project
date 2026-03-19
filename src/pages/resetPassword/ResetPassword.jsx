@@ -9,7 +9,7 @@ import {  useNavigate } from 'react-router-dom';
 export default function ResetPassword() {
     const navigation=useNavigate();
 const {mutate:sendCode,isPending:PendingSendCode,isError:ErrorInEmail,error:ErrorType,isSuccess:SentEmailStatus}=useSendCode();
-const {register,handleSubmit,formState:{errors,isSubmitting}}=useForm({
+const {register,handleSubmit,getValues,formState:{errors,isSubmitting}}=useForm({
     resolver:yupResolver(SendCodeValidation)
 })
 let serverError='';
@@ -50,7 +50,7 @@ return <>
         {PendingSendCode ? <CircularProgress size={24} /> : 'Send Code'}
       </Button>
     {
-        SentEmailStatus&& navigation('/enterCode')
+        SentEmailStatus&&(localStorage.setItem('email',getValues('email')), navigation('/enterCode'))
     }
 
     </Box>
