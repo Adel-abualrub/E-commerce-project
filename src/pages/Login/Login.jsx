@@ -107,6 +107,10 @@ export default function Login() {
         <Typography component={Link} variant="a" to={"/signup"}>
           Dont Have an account?sign up now
         </Typography>
+        
+        <Typography component={Link} variant="a" to={"/resetPassword"}>
+        Forget Passowrd
+        </Typography>
       </Box>
     </Box>
   );

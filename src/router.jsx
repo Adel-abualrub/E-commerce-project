@@ -14,6 +14,8 @@ import CheckOut from "./pages/CheckOut/CheckOut";
 import Orders from "./pages/Profile/ordere/Orders";
 import Settings from "./pages/Profile/settings/Settings";
 import AcccountInfo from "./pages/Profile/accountInfo/AcccountInfo";
+import ResetPassword from "./pages/resetPassword/ResetPassword";
+import EnterCode from "./pages/resetPassword/EnterCode";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +91,15 @@ const router = createBrowserRouter([
         path:'login',
         element:<Login/>
       },
+      {
+        path:'resetPassword',
+        element:<ResetPassword/>
+      },
+      {
+        path:'enterCode',
+        element:<EnterCode/>
+      }
+      ,
       {
         path:'profile',
         element:<Profile/>
