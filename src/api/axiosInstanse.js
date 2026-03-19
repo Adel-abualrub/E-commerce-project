@@ -2,7 +2,7 @@ import axios from "axios";
 import i18n from "../i18next";
 
 const axiosInstanse=axios.create({
-baseURL:`${import.meta.env.VITE_BURL}`
+baseURL:`${import.meta.env.VITE_BURL}`,withCredentials:true
 
 
 });
