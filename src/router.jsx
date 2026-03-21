@@ -16,6 +16,7 @@ import Settings from "./pages/Profile/settings/Settings";
 import AcccountInfo from "./pages/Profile/accountInfo/AcccountInfo";
 import ResetPassword from "./pages/resetPassword/ResetPassword";
 import EnterCode from "./pages/resetPassword/EnterCode";
+import CategoryProducts from "./pages/categoryProducts.jsx/CategoryProducts";
 
 const router = createBrowserRouter([
   {
@@ -107,6 +108,11 @@ const router = createBrowserRouter([
       {
         path:'product/:id',
         element: <ProductDetails/>
+      },
+      {
+        path:'categoryProducts/:id',
+        element: <CategoryProducts/>
+        
       }
 
     ],
