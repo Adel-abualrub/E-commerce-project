@@ -15,15 +15,31 @@ import Chip from "@mui/material/Chip";
 import Divider from "@mui/material/Divider";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
+import Avatar from "@mui/material/Avatar";
+import Rating from "@mui/material/Rating";
 import useAddToCart from "../../hook/useAddToCart";
+import TextField from "@mui/material/TextField";
+import { useForm } from "react-hook-form";
+import useAddRating from "../../hook/useAddRating";
 
 export default function ProductDetails() {
+  const [value, setValue] = React.useState(0);
   const { id } = useParams();
+  
   const { data, isLoading, isError, error } = useProductDetails(id);
-  const {mutate,isPending}=useAddToCart();
+  const { register, handleSubmit, formState: { errors } } = useForm({});
+  
+  const { mutate, isPending } = useAddToCart();
+  const { mutate: AddRating, isPending: PendingRating, isError: errorRating, error: errorType } = useAddRating();
 
-
-
+  // دالة تجميع البيانات قبل إرسالها للـ Hook
+  const onSubmitReview = (formData) => {
+    AddRating({
+      Rating: value,
+      Comment: formData.Comment, // إرسال النص باسم Comment
+      id: id
+    });
+  };
 
   if (isLoading) {
     return (
@@ -33,6 +49,11 @@ export default function ProductDetails() {
     );
   }
 
+  if (errorRating) {
+    console.log(errorType?.response?.data);
+    console.log(errorType?.response?.status);
+    console.log(errorType);
+  }
 
   if (isError) {
     return (
@@ -42,7 +63,7 @@ export default function ProductDetails() {
     );
   }
 
-  const product = data?.response; // <-- إذا عندك الشكل مختلف عدّلها
+  const product = data?.response;
 
   if (!product) {
     return (
@@ -53,6 +74,7 @@ export default function ProductDetails() {
   }
 
   const inStock = Number(product.quantity) > 0;
+  const reviews = product.reviews || [];
 
   return (
     <Container sx={{ py: 3 }}>
@@ -68,7 +90,6 @@ export default function ProductDetails() {
 
       <Card sx={{ borderRadius: 3, overflow: "hidden" }}>
         <Grid container>
-          {/* Image */}
           <Grid item xs={12} md={6}>
             <Box sx={{ p: 2 }}>
               <CardMedia
@@ -86,7 +107,6 @@ export default function ProductDetails() {
             </Box>
           </Grid>
 
-          {/* Content */}
           <Grid item xs={12} md={6}>
             <CardContent sx={{ p: 3 }}>
               <Stack spacing={1.5}>
@@ -125,16 +145,13 @@ export default function ProductDetails() {
                 <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
                   <Button
                     variant="contained"
-                    disabled={!inStock||isPending}
+                    disabled={!inStock || isPending}
                     sx={{ flex: 1, py: 1.2, borderRadius: 2 }}
-                    onClick={()=>{
-mutate({
-pId:product.id,
-count:1
-
-})
-
-
+                    onClick={() => {
+                      mutate({
+                        pId: product.id,
+                        count: 1,
+                      });
                     }}
                   >
                     Add to Cart
@@ -154,6 +171,83 @@ count:1
           </Grid>
         </Grid>
       </Card>
+
+      <Box sx={{ display: "flex", flexDirection: "column", mt: 4 }}>
+        <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+          Add Review
+        </Typography>
+        
+        <Box component="form" onSubmit={handleSubmit(onSubmitReview)} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Typography component="legend">Rating</Typography>
+          <Rating
+            name="simple-controlled"
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+          />
+          
+          <TextField
+            id="outlined-basic"
+            label="Add your review"
+            variant="outlined"
+            {...register("Comment", { required: "Please enter your review" })}
+            error={!!errors.Comment}
+            helperText={errors.Comment?.message}
+          />
+          
+          <Button type="submit" variant="contained" disabled={PendingRating} sx={{ width: "fit-content", alignItems: "center" }}>
+            {PendingRating ? "Submitting..." : "Submit"}
+          </Button>
+          {errorRating && (
+    <Alert severity="error" sx={{ mb: 2 }}>
+      {errorType?.response?.data?.message || "An error occurred while adding the review"}
+    </Alert>
+  )}
+        </Box>
+      </Box>
+
+      <Box sx={{ mt: 4 }}>
+        <Typography variant="h5" sx={{ fontWeight: 700, mb: 2 }}>
+          Reviews
+        </Typography>
+
+        {reviews.length === 0 ? (
+          <Alert severity="info">No reviews yet.</Alert>
+        ) : (
+          <Stack spacing={2}>
+            {reviews.map((review, index) => (
+              <Card key={index} sx={{ borderRadius: 3 }}>
+                <CardContent>
+                  <Stack spacing={1.5}>
+                    <Stack direction="row" spacing={2} alignItems="center">
+                      <Avatar>
+                        {review.userName?.charAt(0)?.toUpperCase()}
+                      </Avatar>
+
+                      <Box sx={{ flex: 1 }}>
+                        <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+                          {review.userName}
+                        </Typography>
+
+                        <Typography variant="body2" color="text.secondary">
+                          {new Date(review.createdAt).toLocaleDateString()}
+                        </Typography>
+                      </Box>
+
+                      <Rating value={review.rating} readOnly />
+                    </Stack>
+
+                    <Typography variant="body1" color="text.secondary">
+                      {review.comment}
+                    </Typography>
+                  </Stack>
+                </CardContent>
+              </Card>
+            ))}
+          </Stack>
+        )}
+      </Box>
     </Container>
   );
 }
