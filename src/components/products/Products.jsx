@@ -1,32 +1,52 @@
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import useCategores from "../../hook/useCategores";
-import useProducts from "../../hook/useProducts";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import { Link } from "react-router-dom";
+import useProducts from "../../hook/useProducts";
 import Product from "../../ui/product/Product";
+import FilterComponent from "../FilterComponent/FilterComponent";
 
 export default function Products() {
+  // الـ Hook الآن يقرأ الفلاتر من Zustand تلقائياً
   const { data, isLoading, isError, error } = useProducts();
-  if (isLoading) return <CircularProgress />;
-  if (isError) return <Box color={"red"}>{error.message}</Box>;
+
+  if (isError) return <Box color={"red"} p={4}>{error.message}</Box>;
 
   return (
-    <Box>
-      <Typography component={"h3"} variant="h4" color="red">
+    <Box sx={{ p: { xs: 2, md: 4 } }}>
+      <Typography component={"h3"} variant="h4" color="error" sx={{ mb: 4, fontWeight: 'bold' }}>
         Our Products
       </Typography>
-      <Grid container spacing={1} >
-        {data.response.data.map((product) => (
-         <Product product={product}></Product>
-        ))}
+
+      <Grid container spacing={3}>
+        {/* قسم الفلاتر (يأخذ 3 أعمدة من أصل 12 في الشاشات الكبيرة) */}
+        <Grid item xs={12} md={3}>
+          <FilterComponent />
+        </Grid>
+
+        {/* قسم المنتجات (يأخذ 9 أعمدة) */}
+        <Grid item xs={12} md={9}>
+          {isLoading ? (
+            <Box sx={{ display: 'flex', justifyContent: 'center', py: 5 }}>
+              <CircularProgress color="error" />
+            </Box>
+          ) : (
+            <Grid container spacing={2}>
+              {data?.response?.data?.map((product) => (
+                <Grid item xs={12} sm={6} lg={4} key={product.id}>
+                  <Product product={product} />
+                </Grid>
+              ))}
+              
+              {/* رسالة في حال عدم وجود منتجات تطابق الفلتر */}
+              {data?.response?.data?.length === 0 && (
+                <Typography sx={{ mt: 4, ml: 2 }}>
+                  No products found matching these filters.
+                </Typography>
+              )}
+            </Grid>
+          )}
+        </Grid>
       </Grid>
     </Box>
   );
