@@ -10,7 +10,7 @@ export default function useProducts() {
   const ascending = useChangeFilterValue((state) => state.ascending);
   const minPrice = useChangeFilterValue((state) => state.minPrice);
   const maxPrice = useChangeFilterValue((state) => state.maxPrice);
-
+const search=useChangeFilterValue((state)=>state.search);
   const getProducts = async () => {
     const response = await axiosInstanse.get(`Products`, {
       params: {
@@ -19,7 +19,8 @@ export default function useProducts() {
         sortBy,
         ascending,
         minPrice,
-        maxPrice
+        maxPrice,
+        search
       }
     });
     return response.data;
@@ -27,7 +28,7 @@ export default function useProducts() {
 
   const { data, isLoading, isError, error } = useQuery({
     // 2. تحديث الـ queryKey ليشمل كل المتغيرات لضمان الـ Re-fetch التلقائي
-    queryKey: ['products', i18n.language, page, limit, sortBy, ascending, minPrice, maxPrice],
+    queryKey: ['products', i18n.language, page, limit, sortBy, ascending, minPrice, maxPrice,search],
     queryFn: getProducts,
     staleTime: 1000 * 60 * 10,
   });

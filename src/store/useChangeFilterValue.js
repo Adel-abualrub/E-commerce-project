@@ -8,9 +8,11 @@ setSortBy:(newSortValue) => set({ sortBy: newSortValue }),
 ascending:false,
 setAscending:(newAscendingValue)=> set  ({ascending:newAscendingValue}),
 minPrice:null,
-setMinPrice:(newMinPriceValue)=>({minPrice:newMinPriceValue}),
+setMinPrice:(newMinPriceValue)=>set({minPrice:newMinPriceValue}),
 maxPrice:null,
-setMinPrice:(newMaxPriceValue)=>({maxPrice:newMaxPriceValue})
+setMaxPrice:(newMaxPriceValue)=>set({maxPrice:newMaxPriceValue}),
+search:null,
+setSearch:(newSearchValue)=>set({search:newSearchValue})
 
    
 }));
