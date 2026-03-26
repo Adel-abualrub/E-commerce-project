@@ -103,7 +103,9 @@ const router = createBrowserRouter([
       ,
       {
         path:'profile',
-        element:<Profile/>
+        element:<ProtectedRouter>
+        <Profile/>
+        </ProtectedRouter>
       },
       {
         path:'product/:id',

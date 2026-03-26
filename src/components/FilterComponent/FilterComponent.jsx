@@ -11,6 +11,7 @@ import {
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import useChangeFilterValue from './../../store/useChangeFilterValue';
+import SearchBar from '../SearchBar/SearchBar';
 
 
 const SearchContainer = styled('div')(({ theme }) => ({
@@ -91,21 +92,7 @@ export default function FilterComponent() {
       <Stack spacing={3}>
         
     
-        <Box>
-          <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 'bold' }}>
-            Search Products
-          </Typography>
-          <SearchContainer>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="What are you looking for?"
-              value={searchValue || ''}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </SearchContainer>
-        </Box>
+      <SearchBar/>
 
         <Box>
           <Typography variant="subtitle2" sx={{ mb: 1, fontWeight: 'bold' }}>

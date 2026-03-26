@@ -1,147 +1,240 @@
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Link as RouterLink, useLocation } from "react-router-dom";
-import React from "react";
 import IconButton from "@mui/material/IconButton";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Badge, Button, Link } from "@mui/material";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Badge, Button, CircularProgress, Link } from "@mui/material";
-import Cart from "../../pages/cart/Cart";
-import useAuthStore from "../../store/useAuthStore";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import LanguageIcon from '@mui/icons-material/Language';
 import Swal from "sweetalert2";
-import useCart from "../../hook/useCart";
 import { useTranslation } from "react-i18next";
+
+import useAuthStore from "../../store/useAuthStore";
+import useCart from "../../hook/useCart";
+import useThemeStore from "../../store/useTheamStore";
 import i18n from "../../i18next";
-import useThemeStore from './../../store/useTheamStore';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
+import SearchBar from './../SearchBar/SearchBar';
+
 const Navbar = () => {
+  const [anchorElNav, setAnchorElNav] = useState(null);
   const location = useLocation();
-  const LogOut = useAuthStore((state) => state.LogOut);
   const { t } = useTranslation();
-  const { data, isLoading, isError, error } = useCart();
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
+  
+  const LogOut = useAuthStore((state) => state.LogOut);
+  const { data } = useCart();
+  const mode = useThemeStore((state) => state.mode);
+  const ToggleTheme = useThemeStore((state) => state.ToggleTheme);
 
   const Items = data?.items?.length || 0;
-  
-  const token = useAuthStore((state) => state.token);
+  const textColor = mode === "light" ? "#000000" : "#ffffff";
 
-  const HandleLogout = () => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
-        LogOut();
-      }
-    });
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+  const handleCloseNavMenu = () => setAnchorElNav(null);
+
+  const changeLanguage = () => {
+    const newLang = i18n.language === "en" ? "ar" : "en";
+    i18n.changeLanguage(newLang);
   };
-
+const HandleLogout = () => {
+  handleCloseNavMenu();
+  Swal.fire({
+    title: t("Are you sure?"),
+    text: t("You will be logged out, and you won't be able to revert this action."),
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: t("Yes, log out!"),
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: t("Logged out!"),
+        text: t("You have been successfully logged out."),
+        icon: "success",
+      });
+      LogOut(); 
+    }
+  });
+};
+const token=useAuthStore((state)=>state.token)
   const getUnderLineAtCurrrentPage = (path) => {
     return location.pathname === path ? "always" : "none";
   };
-  
-const mode=useThemeStore((state) =>state.mode);
-const ToggleTheme=useThemeStore((state)=>state.ToggleTheme);
+
+
+const [LoginStatus,setLogInStatus]=useState(false);
+
+
+
+React.useEffect(() => {
+  if (token) {
+    setLogInStatus(true);
+  } else {
+    setLogInStatus(false);
+  }
+}, [token]); 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: mode === 'light' ? 'white' : '#121212' }}>
-        <Toolbar>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, color: "#000000" }}
+    <AppBar position="sticky" sx={{ backgroundColor: mode === "light" ? "white" : "#121212", boxShadow: 1 }}>
+      <Toolbar>
+      
+        <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <IconButton
+            size="large"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={handleOpenNavMenu}
+            sx={{ color: textColor }}
           >
-            Exclusive
-          </Typography>
-
-          <Box
-            sx={{
-              display: "flex",
-              gap: 3,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+            <MenuIcon />
+          </IconButton>
+          <Menu
+            id="menu-appbar"
+            anchorEl={anchorElNav}
+            anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+            keepMounted
+            transformOrigin={{ vertical: "top", horizontal: "left" }}
+            open={Boolean(anchorElNav)}
+            onClose={handleCloseNavMenu}
+            sx={{ display: { xs: "block", md: "none" } }}
           >
-            <Link
-              component={RouterLink}
-              color="#000000"
-              underline={getUnderLineAtCurrrentPage("/")}
-              to={"/"}
-            >
-              {t("Home")}
-            </Link>
+        
+            <Box sx={{ px: 2, py: 1, width: '250px' }}>
+              <SearchBar hideTitle={true} />
+            </Box>
 
-            <Link
-              component={RouterLink}
-              color="#000000"
-              underline={getUnderLineAtCurrrentPage("/contact")}
-              to={"/contact"}
-            >
-              {t("Contact")}
-            </Link>
+           <MenuItem onClick={handleCloseNavMenu} component={RouterLink} to="/">
+  <Typography textAlign="center">{t("Home")}</Typography>
+</MenuItem>
+<MenuItem onClick={handleCloseNavMenu} component={RouterLink} to="/contact">
+  <Typography textAlign="center">{t("Contact")}</Typography>
+</MenuItem>
+<MenuItem onClick={handleCloseNavMenu} component={RouterLink} to="/about">
+  <Typography textAlign="center">{t("About")}</Typography>
+</MenuItem>
+{!LoginStatus &&
+<MenuItem onClick={handleCloseNavMenu} component={RouterLink} to="/signup">
+  <Typography textAlign="center">{t("Signup")}</Typography>
+</MenuItem>
+}
+{LoginStatus && (
+  <MenuItem onClick={HandleLogout}> 
+    <Typography textAlign="center" color="error">{t("Logout")}</Typography>
+  </MenuItem>
+)}
+          </Menu>
 
-            <Link
-              component={RouterLink}
-              color="#000000"
-              underline={getUnderLineAtCurrrentPage("/about")}
-              to={"/about"}
-            >
-              {t("About")}
-            </Link>
 
-            <Link
-              component={RouterLink}
-              color="#000000"
-              underline={getUnderLineAtCurrrentPage("/signup")}
-              to={"/signup"}
-            >
-              {t("Signup")}
-            </Link>
-            <Button onClick={ToggleTheme} color="inherit" sx={{color:"black"}}>
-              {mode === "light" ? "Dark" : "Light"}
-            </Button>
-            <Link component={Button} color="#000000" onClick={HandleLogout}>
-              {t("Logout")}
-            </Link>
-            <button onClick={() => changeLanguage("en")}>en</button>
-            <button onClick={() => changeLanguage("ar")}>ar</button>
-            <IconButton
-              component={RouterLink}
-              to={"/profile"}
-              sx={{ color: "black" }}
-            >
+        </Box>
 
-                <AccountCircleIcon/>
-            
-            </IconButton>
+  
+        <Typography
+          variant="h6"
+          component={RouterLink}
+          to="/"
+          sx={{
+            flexGrow: { xs: 1, md: 0 },
+            mr: { md: 2 },
+            textDecoration: "none",
+            color: textColor,
+            fontWeight: "bold",
+            letterSpacing: ".1rem",
+            whiteSpace: "nowrap"
+          }}
+        >
+          {t("Exclusive")}
+        </Typography>
 
-            <IconButton
-              component={RouterLink}
-              to={"/Cart"}
-              sx={{ color: "black" }}
-            >
-              <Badge badgeContent={Items} color="primary">
-                <ShoppingCartIcon />
-              </Badge>
-            </IconButton>
+      
+        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3, ml: 2, alignItems: 'center' }}>
+      <Link
+  component={RouterLink}
+  to="/"
+  underline={getUnderLineAtCurrrentPage("/")}
+  sx={{ color: textColor, fontWeight: 500, '&:hover': { color: '#1976d2' } }}
+>
+  {t("Home")}
+</Link>
+
+<Link
+  component={RouterLink}
+  to="/contact"
+  underline={getUnderLineAtCurrrentPage("/contact")}
+  sx={{ color: textColor, fontWeight: 500, '&:hover': { color: '#1976d2' } }}
+>
+  {t("Contact")}
+</Link>
+
+<Link
+  component={RouterLink}
+  to="/about"
+  underline={getUnderLineAtCurrrentPage("/about")}
+  sx={{ color: textColor, fontWeight: 500, '&:hover': { color: '#1976d2' } }}
+>
+  {t("About")}
+</Link>
+{!LoginStatus&&
+<Link
+  component={RouterLink}
+  to="/signup"
+  underline={getUnderLineAtCurrrentPage("/signup")}
+  sx={{ color: textColor, fontWeight: 500, '&:hover': { color: '#1976d2' } }}
+>
+  {t("Signup")}
+</Link>
+}
+
+{LoginStatus && (
+  <Button onClick={HandleLogout}> 
+    <Typography textAlign="center" color="error">{t("Logout")}</Typography>
+  </Button>
+)}
+        </Box>
+
+ 
+        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center', mx: 2 }}>
+          <Box sx={{ width: '100%', maxWidth: '400px' }}>
+            <SearchBar hideTitle={true} />
           </Box>
-        </Toolbar>
-      </AppBar>
-    </Box>
+        </Box>
+
+      
+        <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+          
+          <IconButton onClick={changeLanguage} sx={{ color: textColor }} title={t(i18n.language === "en" ? "ar" : "en")}>
+            <LanguageIcon />
+            <Typography variant="caption" sx={{ ml: 0.5, fontWeight: "bold" }}>
+              {i18n.language === "en" ? "AR" : "EN"}
+            </Typography>
+          </IconButton>
+
+          <IconButton onClick={ToggleTheme} sx={{ color: textColor }}>
+            {mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
+          </IconButton>
+{LoginStatus&&
+          <IconButton component={RouterLink} to={"/profile"} sx={{ color: textColor }}>
+            <AccountCircleIcon />
+          </IconButton>
+}
+{LoginStatus&&
+          <IconButton component={RouterLink} to={"/Cart"} sx={{ color: textColor }}>
+            <Badge badgeContent={Items} color="error">
+              <ShoppingCartIcon />
+            </Badge>
+          </IconButton>
+}
+          
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 

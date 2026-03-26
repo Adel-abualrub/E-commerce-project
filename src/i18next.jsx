@@ -4,30 +4,80 @@ import i18n from "i18next";
 import { useTranslation, initReactI18next } from "react-i18next";
 
 i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(initReactI18next) 
   .init({
-    // the translations
-    // (tip move them in a JSON file and import them,
-    // or even better, manage them via a UI: https://react.i18next.com/guides/multiple-translation-files#manage-your-translations-with-a-management-gui)
+ 
     resources: {
-    en: {
-    translation: {
-      Home: "Home",
-      Contact: "Contact",
-      About: "About",
-      Signup: "Sign Up",
-      Logout: "Logout"
-    }
-  },
-  ar: {
-    translation: {
-      Home: "الرئيسية",
-      Contact: "اتصل بنا",
-      About: "من نحن",
-      Signup: "إنشاء حساب",
-      Logout: "تسجيل الخروج"
-    }
-  }
+      en: {
+        translation: {
+    
+          Home: "Home",
+          Contact: "Contact",
+          About: "About",
+          Shop: "Shop",
+          Exclusive:"Exclusive",
+        
+          Login: "Login",
+          Signup: "Sign Up",
+          Logout: "Logout",
+          Profile: "Profile",
+
+     
+          Products: "Products",
+          Categories: "Categories",
+          Cart: "Cart",
+          Checkout: "Checkout",
+          Orders: "My Orders",
+          Search: "Search...",
+          Price: "Price",
+          AddToCart: "Add to Cart",
+          RemoveFromCart: "Remove",
+          Total: "Total",
+          EmptyCart: "Your cart is empty",
+          
+       
+          Success: "Success!",
+          Error: "An error occurred",
+          Save: "Save",
+          SearchProducts: "Search Products",
+SearchPlaceholder: "What are you looking for?",
+        }
+      },
+      ar: {
+        translation: {
+      
+          Home: "الرئيسية",
+          Contact: "اتصل بنا",
+          About: "من نحن",
+          Shop: "المتجر",
+          Exclusive:"حصري",
+    
+          Login: "تسجيل الدخول",
+          Signup: "إنشاء حساب",
+          Logout: "تسجيل الخروج",
+          Profile: "الملف الشخصي",
+
+ 
+          Products: "المنتجات",
+          Categories: "الأقسام",
+          Cart: "السلة",
+          Checkout: "الدفع",
+          Orders: "طلباتي",
+          Search: "بحث...",
+          Price: "السعر",
+          AddToCart: "أضف إلى السلة",
+          RemoveFromCart: "إزالة",
+          Total: "المجموع",
+          EmptyCart: "سلة المشتريات فارغة",
+          
+       
+          Success: "تم بنجاح!",
+          Error: "حدث خطأ ما",
+          Save: "حفظ",
+          SearchProducts: "البحث عن المنتجات",
+SearchPlaceholder: "ما الذي تبحث عنه؟",
+        }
+      }
     },
     lng: i18n.language, // if you're using a language detector, do not define the lng option
     fallbackLng: "en",
@@ -36,4 +86,5 @@ i18n
       escapeValue: false // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
     }
   });
-  export default i18n
+
+export default i18n;
