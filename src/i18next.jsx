@@ -19,7 +19,7 @@ i18n.use(initReactI18next).init({
         Profile: "Profile",
         CreateAnAccount: "Create an account",
         Enteryourdetailsbelow: "Enter your details below",
-        name: "Name",
+        UserName: "User Name",
         email: "Email ",
         password: "Password",
         phoneNumber: "Phone Number",
@@ -42,7 +42,11 @@ i18n.use(initReactI18next).init({
         SearchProducts: "Search Products",
         SearchPlaceholder: "What are you looking for?",
         CreateAccount:"Create Account",
-        HaveAccount:"Already have an account?"
+        HaveAccount:"Already have an account?",
+        fullName:"Full Name",
+        errorOcured:"An error occurred please try again",
+        Ok:"ok",
+        ConfirmEmail:"Your account has been created. Please confirm your email"
       },
     },
     ar: {
@@ -77,12 +81,16 @@ i18n.use(initReactI18next).init({
         Save: "حفظ",
         SearchProducts: "البحث عن المنتجات",
         SearchPlaceholder: "ما الذي تبحث عنه؟",
-        name: "الاسم",
+        UserName: "اسم المستخدم",
         email: "البريد الإلكتروني ",
         password: "كلمة المرور",
         phoneNumber: "رقم الهاتف",
         CreateAccount:"انشئ حسابك",
-        HaveAccount:"لديك حساب بالفعل؟"
+        HaveAccount:"لديك حساب بالفعل؟",
+        fullName:"الاسم الكامل",
+        errorOcured:"حدث خطأ، يرجى المحاولة مرة أخرى",
+        Ok:"حسنا",
+        ConfirmEmail:"Your account has been created. Please confirm your email"
       },
     },
   },
