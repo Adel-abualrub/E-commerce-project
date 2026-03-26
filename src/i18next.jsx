@@ -44,9 +44,12 @@ i18n.use(initReactI18next).init({
         CreateAccount:"Create Account",
         HaveAccount:"Already have an account?",
         fullName:"Full Name",
-        errorOcured:"An error occurred please try again",
+        errorOcured:"Something went wrong",
         Ok:"ok",
-        ConfirmEmail:"Your account has been created. Please confirm your email"
+        ConfirmEmail:"Your account has been created. Please confirm your email",
+        LogInToYourAccount:" Login to your account",
+        DontHaveAccount:"Don't have an account?",
+        ForgetPassword:'Forgot Password ?'
       },
     },
     ar: {
@@ -90,7 +93,10 @@ i18n.use(initReactI18next).init({
         fullName:"الاسم الكامل",
         errorOcured:"حدث خطأ، يرجى المحاولة مرة أخرى",
         Ok:"حسنا",
-        ConfirmEmail:"Your account has been created. Please confirm your email"
+        ConfirmEmail:"Your account has been created. Please confirm your email",
+        LogInToYourAccount:"سجل دخول الى حسابك",
+        DontHaveAccount:"ليس لديك حساب؟ ",
+        ForgetPassword:'نسيت كلمة السر؟'
       },
     },
   },

@@ -17,6 +17,7 @@ import AcccountInfo from "./pages/Profile/accountInfo/AcccountInfo";
 import ResetPassword from "./pages/resetPassword/ResetPassword";
 import EnterCode from "./pages/resetPassword/EnterCode";
 import CategoryProducts from "./pages/categoryProducts.jsx/CategoryProducts";
+import GuestRoute from "./GuestRoute";
 
 const router = createBrowserRouter([
   {
@@ -85,12 +86,21 @@ const router = createBrowserRouter([
       },
       {
         path:'signup',
-        element:<Signup/>
+
+        element:
+        <GuestRoute>
+           <Signup/>
+        </GuestRoute>
+       
 
       },
       {
         path:'login',
-        element:<Login/>
+        element:
+        <GuestRoute>
+           <Login/>
+        </GuestRoute>
+       
       },
       {
         path:'resetPassword',

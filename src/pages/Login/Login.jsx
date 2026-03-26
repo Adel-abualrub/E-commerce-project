@@ -4,117 +4,131 @@ import {
   Button,
   TextField,
   Typography,
-  Alert,
   CircularProgress,
-} from "@mui/material"; // إضافة Alert
-import axios from "axios";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+  Card,
+  CardMedia,
+  Alert,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { ValidationLoginSchema } from "../../validation/LoginValidation";
 import axiosInstanse from "../../api/axiosInstanse";
 import useAuthStore from "../../store/useAuthStore";
+import sideImage from "./../../imgs/AuthImg/SideImage.png";
+import useLogin from "../../hook/useLogin";
+import { useTranslation } from "react-i18next";
+
+
 export default function Login() {
-  
-  const setToken = useAuthStore( (state) =>state.setToken);
+  const {t}=useTranslation()
+  const setToken = useAuthStore((state) => state.setToken);
   const [ServerError, SetServerError] = useState("");
   const [Error, SetError] = useState(false);
-  const SendLoginData = async (values) => {
-    try {
-      const response = await axiosInstanse.post(
-      'auth/Account/Login',
-        values,
-      );
-
-      if(response.status===200){
-
-        setToken(response.data.accessToken);
-      }
-    } catch (error) {
-      if (error.status === 500 || error.status === 404) SetError(true);
-      else if (error.status === 400) {
-        SetServerError(error.response.data.message);
-      }
-    }
-  };
+const logout=useAuthStore((state)=>state.LogOut);
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({
-    resolver: yupResolver(ValidationLoginSchema),mode:"onBlur"
+    resolver: yupResolver(ValidationLoginSchema),
+    mode: "onBlur",
   });
 
-  if (Error) {
-    return <Box color="red">Something went wrong. Please try again later.</Box>;
-  }
+const {mutate:LogIn,isError:IsErrorInLogIn,error:errorInLogIn}=useLogin();  
+
+ 
 
   return (
-    <Box
-      sx={{
+    <Box sx={{ display: "flex", gap: 3, py: 3 }}>
+
+     
+      <Card sx={{ display: { lg: "block", md: "none", sm: "none", xs: "none" } }}>
+        <CardMedia component="img" image={sideImage} />
+      </Card>
+
+    
+      <Box sx={{
         display: "flex",
-        gap: 3,
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-      }}
-    >
-      <Typography component="h1" variant="h3">
-        Login to your account{" "}
-      </Typography>
+        gap: 3,
+        maxWidth: 600,
+        margin: "auto",
+        padding: 3,
+      }}>
 
-      <Box
-        component="form"
-        onSubmit={handleSubmit(SendLoginData)}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 3,
-          alignItems: "center",
-        }}
-      >
-        <TextField
-          {...register("email")}
-          error={!!errors.email}
-          helperText={errors.email?.message}
-          id="outlined-basic"
-          label="Email"
-          variant="outlined"
-          sx={{ width: 600 }}
-        />
-
-        <TextField
-          {...register("password")}
-          error={!!errors.password}
-          helperText={errors.password?.message}
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          sx={{ width: 600 }}
-        />
-
-        {ServerError?.length > 0 && (
-          <Box mt={2} color={"red"}>
-            {<Typography>{ServerError}</Typography>}
-          </Box>
-        )}
-
-        <Button variant="contained" type="submit" disabled={isSubmitting}>
-          {isSubmitting?<CircularProgress /> : "Login"}
-        </Button>
-        <Typography component={Link} variant="a" to={"/signup"}>
-          Dont Have an account?sign up now
+        <Typography component="h1" variant="h3" align="center">
+         {t('LogInToYourAccount')}
         </Typography>
-        
-        <Typography component={Link} variant="a" to={"/resetPassword"}>
-        Forget Passowrd
+        <Typography variant="body1" color="text.secondary" align="center">
+         {t("Enteryourdetailsbelow")}
         </Typography>
+
+        <Box
+          component="form"
+         onSubmit={handleSubmit(LogIn)}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 3,
+            alignItems: "center",
+            width: "100%",
+          }}
+        >
+          <TextField
+            {...register("email")}
+            error={!!errors.email}
+            helperText={errors.email?.message}
+           label={t("email")}
+            variant="outlined"
+            fullWidth
+            sx={{ maxWidth: 600 }}
+          />
+
+          <TextField
+            {...register("password")}
+            error={!!errors.password}
+            helperText={errors.password?.message}
+            label={t("password")}
+            type="password"
+            autoComplete="current-password"
+            fullWidth
+            sx={{ maxWidth: 600 }}
+          />
+{IsErrorInLogIn &&(
+    <Alert severity="error">
+    {errorInLogIn?.response?.data?.message || t('errorOcured')}
+    </Alert>
+)
+
+
+}
+      
+
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            disabled={isSubmitting}
+            sx={{ width: "100%", maxWidth: 600 }}
+          >
+            {isSubmitting ? <CircularProgress size={24} /> : t("Login")}
+          </Button>
+
+          <Typography variant="body2" color="text.secondary">
+            {t('DontHaveAccount')}
+            <Link to="/signup">{t('Signup')}</Link>
+          </Typography>
+
+          <Typography variant="body2" color="text.secondary">
+            <Link to="/resetPassword">{t('ForgetPassword')}</Link>
+          </Typography>
+
+        </Box>
       </Box>
+
     </Box>
   );
 }
-
-
-
