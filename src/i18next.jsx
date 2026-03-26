@@ -1,7 +1,5 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
 import i18n from "i18next";
-import { useTranslation, initReactI18next } from "react-i18next";
+import { initReactI18next } from "react-i18next";
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -12,7 +10,6 @@ i18n.use(initReactI18next).init({
         About: "About",
         Shop: "Shop",
         Exclusive: "Exclusive",
-
         Login: "Login",
         Signup: "Sign Up",
         Logout: "Logout",
@@ -20,10 +17,9 @@ i18n.use(initReactI18next).init({
         CreateAnAccount: "Create an account",
         Enteryourdetailsbelow: "Enter your details below",
         UserName: "User Name",
-        email: "Email ",
+        email: "Email",
         password: "Password",
         phoneNumber: "Phone Number",
-
         Products: "Products",
         Categories: "Categories",
         Cart: "Cart",
@@ -35,21 +31,31 @@ i18n.use(initReactI18next).init({
         RemoveFromCart: "Remove",
         Total: "Total",
         EmptyCart: "Your cart is empty",
-
         Success: "Success!",
         Error: "An error occurred",
         Save: "Save",
         SearchProducts: "Search Products",
         SearchPlaceholder: "What are you looking for?",
-        CreateAccount:"Create Account",
-        HaveAccount:"Already have an account?",
-        fullName:"Full Name",
-        errorOcured:"Something went wrong",
-        Ok:"ok",
-        ConfirmEmail:"Your account has been created. Please confirm your email",
-        LogInToYourAccount:" Login to your account",
-        DontHaveAccount:"Don't have an account?",
-        ForgetPassword:'Forgot Password ?'
+        CreateAccount: "Create Account",
+        HaveAccount: "Already have an account?",
+        fullName: "Full Name",
+        errorOcured: "Something went wrong",
+        Ok: "Ok",
+        ConfirmEmail: "Your account has been created. Please confirm your email",
+        LogInToYourAccount: "Login to your account",
+        DontHaveAccount: "Don't have an account?",
+        ForgetPassword: "Forgot Password?",
+        ResetPassword: "Reset Password",
+        ResetPasswordSubtitle: "Enter your email and we'll send you a reset code",
+        SendCode: "Send Code",
+        EnterCode: "Enter Code",
+        EnterCodeSubtitle: "Enter the code we sent to your email",
+        Code: "Code",
+        Verify: "Verify",
+        NewPassword: "New Password",
+        ConfirmPassword: "Confirm Password",
+        ChangePassword: "Change Password",
+        PasswordChanged: "Your password has been changed successfully",
       },
     },
     ar: {
@@ -59,14 +65,16 @@ i18n.use(initReactI18next).init({
         About: "من نحن",
         Shop: "المتجر",
         Exclusive: "حصري",
-
         Login: "تسجيل الدخول",
         Signup: "إنشاء حساب",
         Logout: "تسجيل الخروج",
         Profile: "الملف الشخصي",
-        CreateAnAccount: "قم بأنشاء حسابك",
+        CreateAnAccount: "قم بإنشاء حسابك",
         Enteryourdetailsbelow: "أدخل التفاصيل الخاصة بك أدناه",
-
+        UserName: "اسم المستخدم",
+        email: "البريد الإلكتروني",
+        password: "كلمة المرور",
+        phoneNumber: "رقم الهاتف",
         Products: "المنتجات",
         Categories: "الأقسام",
         Cart: "السلة",
@@ -78,33 +86,38 @@ i18n.use(initReactI18next).init({
         RemoveFromCart: "إزالة",
         Total: "المجموع",
         EmptyCart: "سلة المشتريات فارغة",
-
         Success: "تم بنجاح!",
         Error: "حدث خطأ ما",
         Save: "حفظ",
         SearchProducts: "البحث عن المنتجات",
         SearchPlaceholder: "ما الذي تبحث عنه؟",
-        UserName: "اسم المستخدم",
-        email: "البريد الإلكتروني ",
-        password: "كلمة المرور",
-        phoneNumber: "رقم الهاتف",
-        CreateAccount:"انشئ حسابك",
-        HaveAccount:"لديك حساب بالفعل؟",
-        fullName:"الاسم الكامل",
-        errorOcured:"حدث خطأ، يرجى المحاولة مرة أخرى",
-        Ok:"حسنا",
-        ConfirmEmail:"Your account has been created. Please confirm your email",
-        LogInToYourAccount:"سجل دخول الى حسابك",
-        DontHaveAccount:"ليس لديك حساب؟ ",
-        ForgetPassword:'نسيت كلمة السر؟'
+        CreateAccount: "أنشئ حسابك",
+        HaveAccount: "لديك حساب بالفعل؟",
+        fullName: "الاسم الكامل",
+        errorOcured: "حدث خطأ، يرجى المحاولة مرة أخرى",
+        Ok: "حسناً",
+        ConfirmEmail: "تم إنشاء حسابك. يرجى تأكيد بريدك الإلكتروني",
+        LogInToYourAccount: "سجل دخول إلى حسابك",
+        DontHaveAccount: "ليس لديك حساب؟",
+        ForgetPassword: "نسيت كلمة السر؟",
+        ResetPassword: "إعادة تعيين كلمة المرور",
+        ResetPasswordSubtitle: "أدخل بريدك الإلكتروني وسنرسل لك رمز إعادة التعيين",
+        SendCode: "إرسال الرمز",
+        EnterCode: "أدخل الرمز",
+        EnterCodeSubtitle: "أدخل الرمز الذي أرسلناه إلى بريدك الإلكتروني",
+        Code: "الرمز",
+        Verify: "تحقق",
+        NewPassword: "كلمة المرور الجديدة",
+        ConfirmPassword: "تأكيد كلمة المرور",
+        ChangePassword: "تغيير كلمة المرور",
+        PasswordChanged: "تم تغيير كلمة المرور بنجاح",
       },
     },
   },
-  lng: i18n.language, // if you're using a language detector, do not define the lng option
+  lng: localStorage.getItem('lang') || 'en',
   fallbackLng: "en",
-
   interpolation: {
-    escapeValue: false, // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
+    escapeValue: false,
   },
 });
 

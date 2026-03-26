@@ -1,6 +1,7 @@
 import React from "react";
 import useUpdatePaassword from "../../hook/useUpdatePaassword";
 import {
+  Alert,
   Box,
   Button,
   CircularProgress,
@@ -8,8 +9,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 export default function EnterCode() {
+  const { t } = useTranslation();
   const {
     mutate: checkPassword,
     isPending: pendingValidation,
@@ -17,64 +20,82 @@ export default function EnterCode() {
     error: ErrorType,
     isSuccess: CodeIsTrue,
   } = useUpdatePaassword();
+
   const {
     register,
     handleSubmit,
-    getValues,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm({});
-  let serverError = "";
-  if (ErrorInCode) {
-    serverError = ErrorType.response.data.message;
-  }
 
   return (
-    <Box
-      component={"form"}
-      onSubmit={handleSubmit(checkPassword)}
-      sx={{ py: 3, display: "flex", flexDirection: "column", gap: 1 }}
-    >
-      <TextField
-        {...register("email")}
-        error={!!errors.email}
-        helperText={errors.email?.message}
-        label="Email"
-        value={localStorage.getItem("email")}
-        sx={{ width: 500 }}
-        slotProps={{
-          input: {
-            readOnly: true,
-          },
-        }}
-        disabled
-      />
+    <Box sx={{
+      minHeight: '80vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 3,
+        alignItems: 'center',
+        width: '100%',
+        maxWidth: 500,
+        padding: 4,
+        borderRadius: 3,
+        boxShadow: 3,
+      }}>
 
-      <TextField
-        {...register("code")}
-        error={!!errors.code}
-        helperText={errors.code?.message}
-        label="validation code"
-        sx={{ width: 500 }}
-      />
+        <Typography component="h1" variant="h4" fontWeight="bold">
+          {t('EnterCode')}
+        </Typography>
+        <Typography variant="body1" color="text.secondary" align="center">
+          {t('EnterCodeSubtitle')}
+        </Typography>
 
-      <TextField
-        {...register("newPassword")}
-        error={!!errors.newPassword}
-        helperText={errors.newPassword?.message}
-        id="outlined-password-input"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        sx={{ width: 600 }}
-      />
-      {serverError?.length > 0 && (
-        <Box mt={2} color={"red"}>
-          {<Typography>{serverError}</Typography>}
+        <Box
+          component="form"
+          onSubmit={handleSubmit(checkPassword)}
+          sx={{ display: 'flex', flexDirection: 'column', gap: 3, width: '100%' }}
+        >
+          <TextField
+            {...register("email")}
+            label={t('email')}
+            value={localStorage.getItem("email")}
+            fullWidth
+            slotProps={{ input: { readOnly: true } }}
+            disabled
+          />
+
+          <TextField
+            {...register("code")}
+            error={!!errors.code}
+            helperText={errors.code?.message}
+            label={t('Code')}
+            fullWidth
+          />
+
+          <TextField
+            {...register("newPassword")}
+            error={!!errors.newPassword}
+            helperText={errors.newPassword?.message}
+            label={t('NewPassword')}
+            type="password"
+            autoComplete="new-password"
+            fullWidth
+          />
+
+          {ErrorInCode && (
+            <Alert severity="error">
+              {ErrorType?.response?.data?.message || t('errorOcured')}
+            </Alert>
+          )}
+
+          <Button variant="contained" type="submit" disabled={pendingValidation} size="large" fullWidth>
+            {pendingValidation ? <CircularProgress size={24} /> : t('Verify')}
+          </Button>
         </Box>
-      )}
-      <Button variant="contained" type="submit" disabled={pendingValidation}>
-        {pendingValidation ? <CircularProgress size={24} /> : "Send Code"}
-      </Button>
+      </Box>
     </Box>
   );
 }

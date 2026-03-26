@@ -22,10 +22,9 @@ import { useTranslation } from "react-i18next";
 
 export default function Login() {
   const {t}=useTranslation()
-  const setToken = useAuthStore((state) => state.setToken);
-  const [ServerError, SetServerError] = useState("");
-  const [Error, SetError] = useState(false);
-const logout=useAuthStore((state)=>state.LogOut);
+  
+
+
   const {
     register,
     handleSubmit,
