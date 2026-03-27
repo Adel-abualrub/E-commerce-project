@@ -88,6 +88,7 @@ City: "City",
 Address: "Detailed Address",
 FieldRequired: "This field is required",
 Processing: "Processing...",
+OrderCreatedSuccessfully:"Order Created Successfully"
       },
     },
     ar: {
@@ -174,6 +175,7 @@ City: "المدينة",
 Address: "العنوان بالتفصيل",
 FieldRequired: "هذا الحقل مطلوب",
 Processing: "جاري المعالجة...",
+OrderCreatedSuccessfully:"تم انشاء طلبك بنجاح"
       },
     },
   },
