@@ -27,7 +27,7 @@ const search=useChangeFilterValue((state)=>state.search);
   };
 
   const { data, isLoading, isError, error } = useQuery({
-    // 2. تحديث الـ queryKey ليشمل كل المتغيرات لضمان الـ Re-fetch التلقائي
+
     queryKey: ['products', i18n.language, page, limit, sortBy, ascending, minPrice, maxPrice,search],
     queryFn: getProducts,
     staleTime: 1000 * 60 * 10,
