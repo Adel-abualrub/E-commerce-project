@@ -5,7 +5,6 @@ i18n.use(initReactI18next).init({
   resources: {
     en: {
       translation: {
-        // العناوين والقائمة
         Home: "Home",
         Contact: "Contact",
         About: "About",
@@ -15,8 +14,6 @@ i18n.use(initReactI18next).init({
         Signup: "Sign Up",
         Logout: "Logout",
         Profile: "Profile",
-        
-        // السلة والدفع
         Cart: "Shopping Cart",
         Checkout: "Checkout",
         Orders: "My Orders",
@@ -32,8 +29,6 @@ i18n.use(initReactI18next).init({
         ClearCart: "Clear Shopping Cart",
         OrderSummary: "Order Summary",
         ProceedToCheckout: "Proceed to Checkout",
-        
-        // الحساب والتسجيل
         CreateAnAccount: "Create an account",
         Enteryourdetailsbelow: "Enter your details below",
         UserName: "User Name",
@@ -45,15 +40,11 @@ i18n.use(initReactI18next).init({
         HaveAccount: "Already have an account?",
         LogInToYourAccount: "Login to your account",
         DontHaveAccount: "Don't have an account?",
-        
-        // كلمات البحث والأقسام
         Products: "Products",
         Categories: "Categories",
         Search: "Search...",
         SearchProducts: "Search Products",
         SearchPlaceholder: "What are you looking for?",
-        
-        // الرسائل والحالات
         Success: "Success!",
         Error: "An error occurred",
         errorOcured: "Something went wrong, please try again",
@@ -61,8 +52,6 @@ i18n.use(initReactI18next).init({
         Save: "Save",
         Verify: "Verify",
         ConfirmEmail: "Your account has been created. Please confirm your email",
-        
-        // استعادة كلمة المرور
         ForgetPassword: "Forgot Password?",
         ResetPassword: "Reset Password",
         ResetPasswordSubtitle: "Enter your email and we'll send you a reset code",
@@ -75,25 +64,35 @@ i18n.use(initReactI18next).init({
         ChangePassword: "Change Password",
         PasswordChanged: "Your password has been changed successfully",
         PaymentMethod: "Payment Method",
-Visa: "Visa Card",
-Cash: "Cash on Delivery",
-PayNow: "Pay Now",
-OrderSummary: "Order Summary",
-ProductName: "Product Name",
-TotalCount: "Quantity",
-ShippingInformation: "Shipping Information",
-FullName: "Full Name",
-Phone: "Phone Number",
+        Visa: "Visa Card",
+        Cash: "Cash on Delivery",
+        PayNow: "Pay Now",
+        ProductName: "Product Name",
+        TotalCount: "Quantity",
+        ShippingInformation: "Shipping Information",
+        FullName: "Full Name",
+        Phone: "Phone Number",
+        City: "City",
+        Address: "Detailed Address",
+        FieldRequired: "This field is required",
+        Processing: "Processing...",
+        OrderCreatedSuccessfully: "Order Created Successfully",
+        AccountInfo: "Account Information",
 City: "City",
-Address: "Detailed Address",
-FieldRequired: "This field is required",
-Processing: "Processing...",
-OrderCreatedSuccessfully:"Order Created Successfully"
+NotSet: "Not Set",
+PersonalDetails: "Personal Details",
+OrderId: "Order ID",
+AmountPaid: "Amount Paid",
+PaymentStatus: "Payment Status",
+Status: "Status",
+OrderDate: "Order Date",
+Paid: "Paid",
+Unpaid: "Unpaid",
+Settings:"Settings"
       },
     },
     ar: {
       translation: {
-      
         Home: "الرئيسية",
         Contact: "اتصل بنا",
         About: "من نحن",
@@ -103,8 +102,6 @@ OrderCreatedSuccessfully:"Order Created Successfully"
         Signup: "إنشاء حساب",
         Logout: "تسجيل الخروج",
         Profile: "الملف الشخصي",
-        
-        // السلة والدفع
         Cart: "سلة التسوق",
         Checkout: "إتمام الشراء",
         Orders: "طلباتي",
@@ -120,8 +117,6 @@ OrderCreatedSuccessfully:"Order Created Successfully"
         ClearCart: "مسح السلة بالكامل",
         OrderSummary: "ملخص الطلب",
         ProceedToCheckout: "الانتقال للدفع",
-
-        // الحساب والتسجيل
         CreateAnAccount: "قم بإنشاء حسابك",
         Enteryourdetailsbelow: "أدخل التفاصيل الخاصة بك أدناه",
         UserName: "اسم المستخدم",
@@ -133,15 +128,11 @@ OrderCreatedSuccessfully:"Order Created Successfully"
         HaveAccount: "لديك حساب بالفعل؟",
         LogInToYourAccount: "سجل دخول إلى حسابك",
         DontHaveAccount: "ليس لديك حساب؟",
-        
-        // كلمات البحث والأقسام
         Products: "المنتجات",
         Categories: "الأقسام",
         Search: "بحث...",
         SearchProducts: "البحث عن المنتجات",
         SearchPlaceholder: "ما الذي تبحث عنه؟",
-        
-        // الرسائل والحالات
         Success: "تم بنجاح!",
         Error: "حدث خطأ ما",
         errorOcured: "حدث خطأ، يرجى المحاولة مرة أخرى",
@@ -149,8 +140,6 @@ OrderCreatedSuccessfully:"Order Created Successfully"
         Save: "حفظ",
         Verify: "تحقق",
         ConfirmEmail: "تم إنشاء حسابك. يرجى تأكيد بريدك الإلكتروني",
-
-        // استعادة كلمة المرور
         ForgetPassword: "نسيت كلمة السر؟",
         ResetPassword: "إعادة تعيين كلمة المرور",
         ResetPasswordSubtitle: "أدخل بريدك الإلكتروني وسنرسل لك رمز إعادة التعيين",
@@ -163,19 +152,32 @@ OrderCreatedSuccessfully:"Order Created Successfully"
         ChangePassword: "تغيير كلمة المرور",
         PasswordChanged: "تم تغيير كلمة المرور بنجاح",
         PaymentMethod: "طريقة الدفع",
-Visa: "بطاقة فيزا",
-Cash: "دفع نقداً عند الاستلام",
-PayNow: "ادفع الآن",
-OrderSummary: "ملخص الطلب",
-ProductName: "اسم المنتج",
-TotalCount: "الكمية",ShippingInformation: "معلومات الشحن",
-FullName: "الاسم الكامل",
-Phone: "رقم الهاتف",
+        Visa: "بطاقة فيزا",
+        Cash: "دفع نقداً عند الاستلام",
+        PayNow: "ادفع الآن",
+        ProductName: "اسم المنتج",
+        TotalCount: "الكمية",
+        ShippingInformation: "معلومات الشحن",
+        FullName: "الاسم الكامل",
+        Phone: "رقم الهاتف",
+        City: "المدينة",
+        Address: "العنوان بالتفصيل",
+        FieldRequired: "هذا الحقل مطلوب",
+        Processing: "جاري المعالجة...",
+        OrderCreatedSuccessfully: "تم انشاء طلبك بنجاح",
+        AccountInfo: "معلومات الحساب",
 City: "المدينة",
-Address: "العنوان بالتفصيل",
-FieldRequired: "هذا الحقل مطلوب",
-Processing: "جاري المعالجة...",
-OrderCreatedSuccessfully:"تم انشاء طلبك بنجاح"
+NotSet: "غير محدد",
+PersonalDetails: "التفاصيل الشخصية",
+OrderId: "رقم الطلب",
+AmountPaid: "المبلغ المدفوع",
+PaymentStatus: "حالة الدفع",
+Status: "الحالة",
+OrderDate: "تاريخ الطلب",
+Paid: "تم الدفع",
+Unpaid: "قيد الانتظار",
+Settings:"الأعدادات"
+
       },
     },
   },

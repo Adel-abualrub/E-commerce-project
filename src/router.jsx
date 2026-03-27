@@ -21,112 +21,105 @@ import GuestRoute from "./GuestRoute";
 
 const router = createBrowserRouter([
   {
-    
     path: "/",
     element: <MainLayout />,
     children: [
       {
         index: true,
         element: <HomePage />,
-        
       },
       {
-        path:'home',
-        element:<HomePage/>
+        path: "home",
+        element: <HomePage />,
+      },
+      {
+        path: "cart",
 
+        element: (
+          <ProtectedRouter>
+            <Cart />
+          </ProtectedRouter>
+        ),
       },
       {
-        path:'cart',
+        path: "checkout",
+        element: (
+          <ProtectedRouter>
+            <CheckOut />
+          </ProtectedRouter>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <ProtectedRouter>
+            <Profile />
+          </ProtectedRouter>
+        ),
+        children: [
+          {
+            index: true,
+            element: <AcccountInfo />,
+          },
+          {
+            path: "orders",
+            element: <Orders />,
+          },
+          {
+            path: "settings",
+            element: <Settings />,
+          },
+        ],
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+      {
+        path: "signup",
 
-        element:
-        <ProtectedRouter>
-           <Cart/>
-        </ProtectedRouter>
-        
-       
-      },
-      { path:'checkout',
-        element:
-        <ProtectedRouter>
-<CheckOut/>
-        </ProtectedRouter>
-
+        element: (
+          <GuestRoute>
+            <Signup />
+          </GuestRoute>
+        ),
       },
       {
-        path:'profile',
-        element:
-        <ProtectedRouter>
-<Profile/>
-
-        </ProtectedRouter>
-        ,children:[
-{
-  index:true,
-  element:<AcccountInfo/>
-},
-{
-  path:'orders',
-  element: <Orders/>
-},
-{
-  path:'settings',
-  element:<Settings/>
-}
-
-
-        ]
+        path: "login",
+        element: (
+          <GuestRoute>
+            <Login />
+          </GuestRoute>
+        ),
       },
       {
-        path:'contact',
-        element: <Contact/>
+        path: "resetPassword",
+        element: <ResetPassword />,
       },
       {
-        path:'about',
-        element:<About/>
+        path: "enterCode",
+        element: <EnterCode />,
       },
       {
-        path:'signup',
-
-        element:
-        <GuestRoute>
-           <Signup/>
-        </GuestRoute>
-       
-
+        path: "profile",
+        element: (
+          <ProtectedRouter>
+            <Profile />
+          </ProtectedRouter>
+        ),
       },
       {
-        path:'login',
-        element:
-        <GuestRoute>
-           <Login/>
-        </GuestRoute>
-       
+        path: "product/:id",
+        element: <ProductDetails />,
       },
       {
-        path:'resetPassword',
-        element:<ResetPassword/>
+        path: "categoryProducts/:id",
+        element: <CategoryProducts />,
       },
-      {
-        path:'enterCode',
-        element:<EnterCode/>
-      }
-      ,
-      {
-        path:'profile',
-        element:<ProtectedRouter>
-        <Profile/>
-        </ProtectedRouter>
-      },
-      {
-        path:'product/:id',
-        element: <ProductDetails/>
-      },
-      {
-        path:'categoryProducts/:id',
-        element: <CategoryProducts/>
-        
-      }
-
     ],
   },
 ]);
