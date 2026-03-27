@@ -88,7 +88,13 @@ Status: "Status",
 OrderDate: "Order Date",
 Paid: "Paid",
 Unpaid: "Unpaid",
-Settings:"Settings"
+Settings:"Settings",
+EmailChangedTitle: "Email Updated!",
+EmailChangedText: "We've sent a confirmation link to your new email. Please verify it.",
+ChangeEmail: "Change Email",
+ChangeEmailSubtitle: "Enter your new email address to update your account",
+NewEmail: "New Email Address",
+EmailUpdated: "Your email has been updated successfully"
       },
     },
     ar: {
@@ -176,7 +182,14 @@ Status: "الحالة",
 OrderDate: "تاريخ الطلب",
 Paid: "تم الدفع",
 Unpaid: "قيد الانتظار",
-Settings:"الأعدادات"
+Settings:"الأعدادات",
+
+
+EmailChangedTitle: "تم تحديث البريد الإلكتروني!",
+EmailChangedText: "لقد أرسلنا رابط تأكيد إلى بريدك الإلكتروني الجديد، يرجى تأكيده.",ChangeEmail: "تغيير البريد الإلكتروني",
+ChangeEmailSubtitle: "أدخل بريدك الإلكتروني الجديد لتحديث حسابك",
+NewEmail: "البريد الإلكتروني الجديد",
+EmailUpdated: "تم تحديث بريدك الإلكتروني بنجاح"
 
       },
     },
