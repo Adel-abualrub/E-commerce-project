@@ -94,7 +94,11 @@ EmailChangedText: "We've sent a confirmation link to your new email. Please veri
 ChangeEmail: "Change Email",
 ChangeEmailSubtitle: "Enter your new email address to update your account",
 NewEmail: "New Email Address",
-EmailUpdated: "Your email has been updated successfully"
+EmailUpdated: "Your email has been updated successfully",
+PasswordChangedTitle: "Password Changed!",
+PasswordChangedText: "Your password has been updated successfully.",
+ChangePassword: "Change Password",
+ChangePasswordSubtitle: "Enter your new password below"
       },
     },
     ar: {
@@ -189,7 +193,13 @@ EmailChangedTitle: "تم تحديث البريد الإلكتروني!",
 EmailChangedText: "لقد أرسلنا رابط تأكيد إلى بريدك الإلكتروني الجديد، يرجى تأكيده.",ChangeEmail: "تغيير البريد الإلكتروني",
 ChangeEmailSubtitle: "أدخل بريدك الإلكتروني الجديد لتحديث حسابك",
 NewEmail: "البريد الإلكتروني الجديد",
-EmailUpdated: "تم تحديث بريدك الإلكتروني بنجاح"
+EmailUpdated: "تم تحديث بريدك الإلكتروني بنجاح",
+PasswordChangedTitle: "تم تغيير كلمة المرور!",
+PasswordChangedText: "تم تحديث كلمة المرور الخاصة بك بنجاح.",
+
+// ar
+ChangePassword: "تغيير كلمة المرور",
+ChangePasswordSubtitle: "أدخل كلمة المرور الجديدة أدناه"
 
       },
     },
