@@ -1,19 +1,63 @@
-import { Card, CardContent, CardMedia, Grid } from '@mui/material'
+import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import useAddToCart from '../../hook/useAddToCart';
 
-export default function Product({product}) {
-  return (
-    <Grid item size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
-            {" "}
-         <Link to={`product/${product.id}`}   style={{ textDecoration: "none", color: "inherit" }} >
-            <Card sx={{ color: "red", textAlign: "center", textDecoration: "none" }}>
-              <CardContent>{product.name}</CardContent>
-              <CardMedia component={"img"} image={product.image}></CardMedia>
-            </Card>
-         </Link>
-          </Grid>
-
-)
+export default function Product({ product }) {
+  const { mutate:AddToCart, isPending } = useAddToCart();
   
+  return (
+    <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
+      <Card sx={{
+        borderRadius: 4,
+        overflow: 'hidden',
+        transition: 'all 0.3s ease',
+        '&:hover': {
+          transform: 'translateY(-6px)',
+          boxShadow: 10,
+        }
+      }}>
+
+        <CardMedia
+          component="img"
+          image={product.image}
+          alt={product.name}
+          sx={{
+            height: 280,
+            objectFit: 'contain',
+            p: 3,
+            bgcolor: 'background.default',
+          }}
+        />
+
+        <CardContent sx={{ display: 'flex', flexDirection: 'column', gap: 1.5, p: 2 }}>
+
+          <Typography variant="body1" fontWeight="bold" noWrap>
+            {product.name}
+          </Typography>
+
+          <Typography variant="h6" color="error" fontWeight="bold">
+            ${product.price}
+          </Typography>
+
+          <Button
+            variant="contained"
+            color="error"
+            startIcon={<ShoppingCartIcon />}
+            fullWidth
+            onClick={(e)=>{
+e.preventDefault();
+ AddToCart({ pId: product.id, count: 1 })
+
+            }}
+            
+          >
+            Add to Cart
+          </Button>
+
+        </CardContent>
+      </Card>
+    </Link>
+  );
 }
