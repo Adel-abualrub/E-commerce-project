@@ -105,8 +105,25 @@ i18n.use(initReactI18next).init({
         MessageSent: "Message Sent!",
         MessageSentText: "We will get back to you soon.",
         SomethingWentWrong: "Something went wrong. Please try again.",
+        StoryTitle: "Our Story",
+        StoryParagraph1:
+          "Launched in 2015, Exclusive is South Asia's premier online shopping marketplace with an active presence in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sellers and 300 brands and serves 3 millions customers across the region.",
+        StoryParagraph2:
+          "Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse assortment in categories ranging from consumer.",
+        StatSellers: "Sellers active our site",
+        StatMonthlySale: "Monthly Product Sale",
+        StatCustomer: "Customer active in our site",
+        StatAnnualSale: "Annual gross sale in our site",
+
+        ServiceDeliveryTitle: "FREE AND FAST DELIVERY",
+        ServiceDeliveryDesc: "Free delivery for all orders over $140",
+        ServiceSupportTitle: "24/7 CUSTOMER SERVICE",
+        ServiceSupportDesc: "Friendly 24/7 customer support",
+        ServiceMoneyBackTitle: "MONEY BACK GUARANTEE",
+        ServiceMoneyBackDesc: "We return money within 30 days",
       },
     },
+
     ar: {
       translation: {
         Home: "الرئيسية",
@@ -209,9 +226,26 @@ i18n.use(initReactI18next).init({
         MessageSent: "تم إرسال الرسالة!",
         MessageSentText: "سنرد عليك في أقرب وقت.",
         SomethingWentWrong: "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+        StoryTitle: "قصتنا",
+        StoryParagraph1:
+          "تم إطلاق Exclusive في عام 2015، وهو سوق التسوق عبر الإنترنت الرائد في جنوب آسيا مع حضور نشط في بنغلاديش. بدعم من مجموعة واسعة من حلول التسويق والبيانات والخدمات المصممة خصيصاً، لدى Exclusive 10,500 بائع و300 علامة تجارية وتخدم 3 ملايين عميل في جميع أنحاء المنطقة.",
+        StoryParagraph2:
+          "لدى Exclusive أكثر من مليون منتج لتقدمه، وتنمو بسرعة كبيرة. تقدم Exclusive تشكيلة متنوعة في فئات تتراوح من المنتجات الاستهلاكية.",
+        StatSellers: "بائع نشط في موقعنا",
+        StatMonthlySale: "مبيعات المنتجات الشهرية",
+        StatCustomer: "عميل نشط في موقعنا",
+        StatAnnualSale: "إجمالي المبيعات السنوية",
+
+        ServiceDeliveryTitle: "توصيل مجاني وسريع",
+        ServiceDeliveryDesc: "توصيل مجاني لجميع الطلبات التي تزيد عن 140$",
+        ServiceSupportTitle: "خدمة عملاء 24/7",
+        ServiceSupportDesc: "دعم عملاء ودود على مدار 24/7",
+        ServiceMoneyBackTitle: "ضمان استرجاع الأموال",
+        ServiceMoneyBackDesc: "نسترجع أموالك خلال 30 يومًا",
       },
     },
   },
+
   lng: localStorage.getItem('lang') || 'en',
   fallbackLng: "en",
   interpolation: {
