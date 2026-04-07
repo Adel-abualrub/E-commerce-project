@@ -74,7 +74,7 @@ const Navbar = () => {
     <AppBar position="sticky" sx={{ backgroundColor: mode === "light" ? "white" : "#121212", boxShadow: 1 }}>
       <Toolbar>
 
-        {/* Mobile Menu */}
+        
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
           <IconButton
             size="large"
@@ -122,7 +122,6 @@ const Navbar = () => {
           </Menu>
         </Box>
 
-        {/* Logo */}
         <Typography
           variant="h6"
           component={RouterLink}

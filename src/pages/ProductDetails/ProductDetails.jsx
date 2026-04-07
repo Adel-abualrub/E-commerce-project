@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useProductDetails from "../../hook/useProductDetails";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -24,6 +24,8 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import StarIcon from "@mui/icons-material/Star";
 import Quantity from "../../components/Quantity/Quantity";
+import useAuthStore from "../../store/useAuthStore";
+import { toast } from "react-toastify";
 
 export default function ProductDetails() {
   const [value, setValue] = React.useState(0);
@@ -32,7 +34,8 @@ export default function ProductDetails() {
   const { register, handleSubmit, formState: { errors } } = useForm({});
   const { mutate, isPending } = useAddToCart();
   const { mutate: AddRating, isPending: PendingRating, isError: errorRating, error: errorType } = useAddRating();
-
+const Navigate=useNavigate();
+const token=useAuthStore((state)=>state.token);
   const onSubmitReview = (formData) => {
     AddRating({ Rating: value, Comment: formData.Comment, id });
   };
@@ -119,7 +122,17 @@ export default function ProductDetails() {
                     disabled={!inStock || isPending}
                     startIcon={<ShoppingCartIcon />}
                     sx={{ flex: 1, py: 1.3, borderRadius: 2 }}
-                    onClick={() => mutate({ pId: product.id, count: 1 })}
+                 onClick={() => {
+  if (!!token) {
+    mutate({ pId: product.id, count: 1 });
+  }
+  else{
+    
+    
+Navigate('/Login')
+
+  }
+}}
                   >
                     Add to Cart
                   </Button>

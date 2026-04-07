@@ -1,12 +1,15 @@
 import { Box, Button, Card, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import useAddToCart from '../../hook/useAddToCart';
+import useAuthStore from '../../store/useAuthStore';
+import Login from './../../pages/Login/Login';
 
 export default function Product({ product }) {
   const { mutate:AddToCart, isPending } = useAddToCart();
-  
+  const Navigate=useNavigate();
+  const token=useAuthStore((state)=>state.token)
   return (
     <Link to={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
       <Card sx={{
@@ -47,9 +50,15 @@ export default function Product({ product }) {
             startIcon={<ShoppingCartIcon />}
             fullWidth
             onClick={(e)=>{
-e.preventDefault();
- AddToCart({ pId: product.id, count: 1 })
-
+            
+ if (!!token) {
+      e.preventDefault();
+      AddToCart({ pId: product.id, count: 1 });
+    }
+    else{
+      e.preventDefault();
+      Navigate(`/Login`);
+    }
             }}
             
           >
