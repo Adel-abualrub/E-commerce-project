@@ -9,15 +9,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import useChangeFilterValue from './../../store/useChangeFilterValue';
 import { useTranslation } from "react-i18next";
 
-// تعديل تصميم حاوية البحث لتبدو عصرية وتتناسب مع الثيم
+
 const SearchContainer = styled('div')(({ theme }) => ({
   position: 'relative',
-  borderRadius: '8px', // زوايا دائرية أنيقة
+  borderRadius: '8px',
   backgroundColor: theme.palette.mode === 'light' 
-    ? '#f5f5f5' // لون رمادي فاتح ونظيف جداً للوضع الفاتح
-    : alpha(theme.palette.common.white, 0.15), // شفافية بيضاء للوضع الداكن
+    ? '#f5f5f5' 
+    : alpha(theme.palette.common.white, 0.15), 
   border: `1px solid ${theme.palette.mode === 'light' ? '#e0e0e0' : 'transparent'}`,
-  transition: 'all 0.3s ease', // انتقال ناعم عند تمرير الماوس
+  transition: 'all 0.3s ease', 
   '&:hover': {
     backgroundColor: theme.palette.mode === 'light' 
       ? '#eeeeee' 
@@ -27,7 +27,7 @@ const SearchContainer = styled('div')(({ theme }) => ({
   width: '100%',
 }));
 
-// تعديل لون الأيقونة
+
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: '100%',
@@ -39,7 +39,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   color: theme.palette.mode === 'light' ? '#757575' : alpha(theme.palette.common.white, 0.7),
 }));
 
-// تعديل حقل الإدخال والنص بلسهولدر
+
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   width: '100%',
@@ -50,7 +50,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: theme.palette.mode === 'light' ? '#212121' : 'white',
     '&::placeholder': {
       color: theme.palette.mode === 'light' ? '#9e9e9e' : alpha(theme.palette.common.white, 0.5),
-      opacity: 1, // مهم جداً لجعل الـ placeholder يظهر بوضوح
+      opacity: 1, 
     },
   },
 }));
