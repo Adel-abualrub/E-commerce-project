@@ -16,9 +16,7 @@ export default function Categories() {
 
   return (
     <Box py={3}>
-      <Typography component="h1" variant="h4" fontWeight="bold" mb={3}>
-        Categories
-      </Typography>
+  
 
       <Swiper
         modules={[Autoplay, Pagination]}

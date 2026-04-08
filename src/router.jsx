@@ -18,6 +18,7 @@ import ResetPassword from "./pages/resetPassword/ResetPassword";
 import EnterCode from "./pages/resetPassword/EnterCode";
 import CategoryProducts from "./pages/categoryProducts.jsx/CategoryProducts";
 import GuestRoute from "./GuestRoute";
+import AllProducts from './pages/AllProducts/AllProducts';
 
 const router = createBrowserRouter([
   {
@@ -120,6 +121,11 @@ const router = createBrowserRouter([
         path: "categoryProducts/:id",
         element: <CategoryProducts />,
       },
+      {
+        path:"products",
+        element:<AllProducts/>
+
+      }
     ],
   },
 ]);

@@ -121,7 +121,8 @@ i18n.use(initReactI18next).init({
         ServiceSupportDesc: "Friendly 24/7 customer support",
         ServiceMoneyBackTitle: "MONEY BACK GUARANTEE",
         ServiceMoneyBackDesc: "We return money within 30 days",
-        Send:"Send"
+        Send:"Send",
+        AllProducts:"All Products"
       },
     },
 
@@ -244,7 +245,8 @@ i18n.use(initReactI18next).init({
         ServiceMoneyBackTitle: "ضمان استرجاع الأموال",
         ServiceMoneyBackDesc: "نسترجع أموالك خلال 30 يومًا",
         FAQ:'الأسئلة الأكثر شيوعا',
-        Send:'ارسال'
+        Send:'ارسال',
+        AllProducts:'جميع المنتجات'
       },
     },
   },

@@ -5,9 +5,11 @@ import Grid from "@mui/material/Grid";
 import useProducts from "../../hook/useProducts";
 import Product from "../../ui/product/Product";
 import FilterComponent from "../FilterComponent/FilterComponent";
+import { useLocation } from 'react-router-dom';
 
 export default function Products() {
   const { data, isLoading, isError, error } = useProducts();
+const location =useLocation();
 
   if (isError) return (
     <Box color="red" p={4}>{error.message}</Box>
@@ -20,9 +22,10 @@ export default function Products() {
       </Typography>
 
       <Grid container spacing={3}>
-        <Grid item xs={12} md={3}>
+        {location.pathname==='/products'&& <Grid item xs={12} md={3}>
           <FilterComponent />
-        </Grid>
+        </Grid>}
+       
 
         <Grid item xs={12} md={9}>
           {isLoading ? (
