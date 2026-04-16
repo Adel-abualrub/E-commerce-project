@@ -122,7 +122,14 @@ i18n.use(initReactI18next).init({
         ServiceMoneyBackTitle: "MONEY BACK GUARANTEE",
         ServiceMoneyBackDesc: "We return money within 30 days",
         Send:"Send",
-        AllProducts:"All Products"
+        AllProducts:"All Products",
+        ErrorTitle: "Oops!",
+PageNotFound: "404 - Page Not Found",
+PageNotFoundDesc: "The page you are looking for does not exist.",
+UnexpectedError: "An unexpected error occurred.",
+BackToHome: "Back to Home",
+ReloadPage: "Reload Page",
+MessagePageNotFound:"The page you are looking for doesn't exist."
       },
     },
 
@@ -246,7 +253,14 @@ i18n.use(initReactI18next).init({
         ServiceMoneyBackDesc: "نسترجع أموالك خلال 30 يومًا",
         FAQ:'الأسئلة الأكثر شيوعا',
         Send:'ارسال',
-        AllProducts:'جميع المنتجات'
+        AllProducts:'جميع المنتجات',
+        ErrorTitle: "أوبس!",
+PageNotFound: "404 - الصفحة غير موجودة",
+PageNotFoundDesc: "الصفحة التي تبحث عنها غير موجودة.",
+UnexpectedError: "حدث خطأ غير متوقع في التطبيق.",
+BackToHome: "العودة للرئيسية",
+ReloadPage: "إعادة تحميل الصفحة",
+MessagePageNotFound:"عذرا هذه الصفحة غير موجودة"
       },
     },
   },

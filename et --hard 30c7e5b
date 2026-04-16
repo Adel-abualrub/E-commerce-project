@@ -1,0 +1,70 @@
+[33m2e8fff6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{0}: reset: moving to 2e8fff6e33e10a8660da9c6a76b938bb35348a42
+[33mc2b7823[m[33m ([m[1;31morigin/main[m[33m)[m HEAD@{1}: commit: Add simple animation
+[33mb5806b3[m HEAD@{2}: commit: improve design in home page and make products page
+[33m30c7e5b[m HEAD@{3}: commit: Finsh footer
+[33m30e9aa5[m HEAD@{4}: commit: about page
+[33mea99476[m HEAD@{5}: commit: Navigate to login if the user is not login
+[33me5e00d7[m HEAD@{6}: commit: Finsh contact page
+[33m022f199[m HEAD@{7}: commit: design categories and products
+[33m647943e[m HEAD@{8}: commit: Change password
+[33m25cd093[m HEAD@{9}: commit: Update email
+[33m1b8bace[m HEAD@{10}: commit: Finsh profile info and orders
+[33ma0b4c98[m HEAD@{11}: commit: Finsh checkout
+[33m05b5a57[m HEAD@{12}: commit: Finsh checkout
+[33m4e5958b[m HEAD@{13}: commit: Finsh cart design
+[33m299396a[m HEAD@{14}: commit: Fix error in cartAxiosInstance refresh token
+[33mfe15104[m HEAD@{15}: commit: Finsh login
+[33m02d6d6a[m HEAD@{16}: commit: Finsh logout #2
+[33m323c009[m HEAD@{17}: commit: Finsh sign up page
+[33m0a3c1e2[m HEAD@{18}: commit: Finsh navbar
+[33m3ae0967[m HEAD@{19}: commit: Search about products
+[33m56a94bf[m HEAD@{20}: commit: Create filter for products
+[33m8e5d346[m HEAD@{21}: commit: add review
+[33maf40d0a[m HEAD@{22}: commit: get products by category
+[33m2772ea5[m HEAD@{23}: commit: reset and update password
+[33m90a3a07[m HEAD@{24}: commit: sent code to reset password
+[33m4def943[m HEAD@{25}: commit: do refresh token
+[33m76a1718[m HEAD@{26}: commit: Create profile
+[33m472fc50[m HEAD@{27}: commit: Dark and light mode
+[33m318f987[m HEAD@{28}: commit: transilate daynamic data
+[33mf4efb73[m HEAD@{29}: commit: Add i18n and do simple transilation
+[33mea57208[m HEAD@{30}: commit: Creat checl out page
+[33m472a9b0[m HEAD@{31}: commit: Create a component for quntity and add number fo items in cart at nav
+[33mf709b3b[m HEAD@{32}: commit: control quantity in cart quantity
+[33me75ff46[m HEAD@{33}: commit: add Clear cart
+[33m7babd6c[m HEAD@{34}: commit: creat add product to ccart hook and display products in cart and delete item from cart
+[33m5ed144e[m HEAD@{35}: commit: Add to cart
+[33me98dcc5[m HEAD@{36}: commit: handle logout
+[33m69387cc[m HEAD@{37}: commit: Add Logout and protucted router for cart
+[33m0c00c83[m HEAD@{38}: commit: Create auth store
+[33m51213c9[m HEAD@{39}: commit: separate category card and product card and make a ui file
+[33m8cd2548[m HEAD@{40}: commit: Fix error in home page to render the website
+[33maeebc29[m HEAD@{41}: commit: fix error when the user in home page and click to view product details
+[33m8b93229[m HEAD@{42}: commit: get products and product details
+[33mf73a3b7[m HEAD@{43}: commit: fix error in caategores
+[33m093cef8[m HEAD@{44}: commit: Add token in login and store it in localstorage and get cart items
+[33m2ffc870[m HEAD@{45}: commit: fix spelling mistake in axiosinstanse.js file in the header
+[33m39f1d34[m HEAD@{46}: commit: Add axios instance
+[33m1bb5c98[m HEAD@{47}: commit: get categores using TANSTACJ QUERY
+[33m1083afc[m HEAD@{48}: commit: Add Loder to register and login button to reduce requests
+[33mc6c7c63[m HEAD@{49}: commit: Login server side validation and update eror diplay in signup
+[33m96c2746[m HEAD@{50}: commit: SignUp server Side Validation and change error message apper on blur
+[33m4d23d72[m HEAD@{51}: commit: Login validation
+[33m5fbc2f4[m HEAD@{52}: commit: Login logic
+[33m10ce1d1[m HEAD@{53}: commit: enable cart button
+[33m48bd9ab[m HEAD@{54}: commit: refactor register code
+[33m9718310[m HEAD@{55}: commit: Fix simple error in validation
+[33m8f81edc[m HEAD@{56}: commit: Client side validation
+[33ma5d27aa[m HEAD@{57}: commit: Register logic fix errror
+[33m7661ad1[m HEAD@{58}: commit (cherry-pick): Register Commit
+[33m2e8fff6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{59}: checkout: moving from 8b67276e3f836eb3aebf84bdda8e2e31bb7fbb9d to main
+[33m8b67276[m HEAD@{60}: commit: Some logic of register
+[33m60bb152[m HEAD@{61}: commit: intial design for signup
+[33mc5c43b9[m HEAD@{62}: commit: Fix error
+[33m2e8fff6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{63}: checkout: moving from main to 2e8fff6
+[33m2e8fff6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{64}: commit: add underLine at current Page in nav
+[33m90edeeb[m HEAD@{65}: commit: do part of Navbar
+[33m422c682[m HEAD@{66}: commit: add profile to pages and do spa for it
+[33m38ee2e3[m HEAD@{67}: commit: init project and single page application
+[33mc12c329[m HEAD@{68}: Branch: renamed refs/heads/master to refs/heads/main
+[33mc12c329[m HEAD@{70}: commit (initial): inastall librarie -react router dom,axios,tostify,mui,-

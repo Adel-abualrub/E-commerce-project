@@ -12,7 +12,7 @@ export default function useAddToCart() {
         Count: count,
       });
     },onSuccess:()=>{
-QueryClient.invalidateQueries({querykey:['cart']})
+QueryClient.invalidateQueries({queryKey:['cart']})
 
 
     }

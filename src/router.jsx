@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "./Layouts/MainLayout/MainLayout";
-
 import Cart from "./pages/cart/Cart";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
@@ -19,11 +18,13 @@ import EnterCode from "./pages/resetPassword/EnterCode";
 import CategoryProducts from "./pages/categoryProducts.jsx/CategoryProducts";
 import GuestRoute from "./GuestRoute";
 import AllProducts from './pages/AllProducts/AllProducts';
+import ErrorPage from "./pages/Error/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    
     children: [
       {
         index: true,
@@ -35,7 +36,6 @@ const router = createBrowserRouter([
       },
       {
         path: "cart",
-
         element: (
           <ProtectedRouter>
             <Cart />
@@ -82,7 +82,6 @@ const router = createBrowserRouter([
       },
       {
         path: "signup",
-
         element: (
           <GuestRoute>
             <Signup />
@@ -106,14 +105,6 @@ const router = createBrowserRouter([
         element: <EnterCode />,
       },
       {
-        path: "profile",
-        element: (
-          <ProtectedRouter>
-            <Profile />
-          </ProtectedRouter>
-        ),
-      },
-      {
         path: "product/:id",
         element: <ProductDetails />,
       },
@@ -122,9 +113,16 @@ const router = createBrowserRouter([
         element: <CategoryProducts />,
       },
       {
-        path:"products",
-        element:<AllProducts/>
-
+        path: "products",
+        element: <AllProducts />
+      },
+      {
+        path: 'error',
+        element: <ErrorPage />
+      },
+      {
+        path: "*",
+        element: <ErrorPage />
       }
     ],
   },
