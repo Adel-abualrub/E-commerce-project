@@ -139,7 +139,7 @@ const Navbar = () => {
           {t("Exclusive")}
         </Typography>
 
-        {/* Desktop Links */}
+       
         <Box sx={{ display: { xs: "none", md: "flex" }, gap: 3, ml: 2, alignItems: 'center' }}>
           <Link component={RouterLink} to="/" underline={getUnderLineAtCurrrentPage("/")} sx={{ color: textColor, fontWeight: 500, '&:hover': { color: '#1976d2' } }}>
             {t("Home")}
@@ -163,14 +163,14 @@ const Navbar = () => {
           )}
         </Box>
 
-        {/* Search */}
+     
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center', mx: 2 }}>
           <Box sx={{ width: '100%', maxWidth: '400px' }}>
             <SearchBar hideTitle={true} />
           </Box>
         </Box>
 
-        {/* Icons */}
+    
         <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
           <IconButton onClick={changeLanguage} sx={{ color: textColor }}>
             <LanguageIcon />
