@@ -23,9 +23,14 @@ export default function HomePage() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isTablet = useMediaQuery(theme.breakpoints.down('md'));
 
-  const SectionHeader = ({ title, subtitle }) => (
-    <Box sx={{ mb: isMobile ? 3 : 5 }}>
-      <Stack direction="row" alignItems="center" spacing={2} sx={{ mb: 1 }}>
+  const SectionHeader = ({ title, subtitle, center = false }) => (
+    <Box sx={{ mb: isMobile ? 3 : 5, textAlign: center ? 'center' : 'left' }}>
+      <Stack 
+        direction="row" 
+        alignItems="center" 
+        spacing={2} 
+        sx={{ mb: 1, justifyContent: center ? 'center' : 'flex-start' }}
+      >
         <Box sx={{ width: isMobile ? 12 : 20, height: isMobile ? 24 : 40, bgcolor: '#db4444', borderRadius: 1 }} />
         <Typography variant="subtitle1" sx={{ color: '#db4444', fontWeight: 'bold' }}>{t(subtitle)}</Typography>
       </Stack>
@@ -36,8 +41,12 @@ export default function HomePage() {
   return (
     <Box component="main" sx={{ pb: 5, overflowX: 'hidden' }}>
       
-      {/* 1. Hero Slider */}
-      <Box sx={{ mb: isMobile ? 4 : 8, px: { xs: 2, md: 0 } }}>
+      {/* 1. Hero Slider with Padding */}
+      <Box sx={{ 
+        mb: isMobile ? 4 : 8, 
+        px: { xs: 2, md: 5 }, // إضافة Padding جانبي للهيرو
+        pt: { xs: 2, md: 4 }  // إضافة Padding علوي للهيرو
+      }}>
         <Swiper
           modules={[Autoplay, Pagination, Navigation]}
           pagination={{ clickable: true }}
@@ -45,8 +54,8 @@ export default function HomePage() {
           autoplay={{ delay: 5000 }}
           loop={true}
           style={{ 
-            borderRadius: isMobile ? '8px' : '0px', 
-            height: isMobile ? '350px' : '500px',
+            borderRadius: '16px', // جعل الزوايا دائرية أكثر ليتناسب مع البادنج
+            height: isMobile ? '350px' : '550px',
             width: '100%'
           }}
         >
@@ -84,16 +93,18 @@ export default function HomePage() {
 
       <Container maxWidth="lg">
         
-     
+        {/* 2. Categories */}
         <Box sx={{ mb: isMobile ? 6 : 10 }}>
           <SectionHeader title="Categories" subtitle="TodaySubtitle" />
           <Categores />
         </Box>
 
-       
+        {/* 3. Products Section - Centered */}
         <Box sx={{ mb: isMobile ? 6 : 10 }}>
-          <SectionHeader title="ExploreProducts" subtitle="OurProductsSubtitle" />
-          <Products />
+          <SectionHeader title="ExploreProducts" subtitle="OurProductsSubtitle" center />
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Products />
+          </Box>
           <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
             <Button component={Link} to='/products' variant="contained"
               sx={{ bgcolor: '#db4444', color: 'white', px: 6, py: 1.5, fontWeight: 'bold' }}>
@@ -102,7 +113,7 @@ export default function HomePage() {
           </Box>
         </Box>
 
-        {/* 4. Promotional Banner - Special Offer */}
+        {/* 4. Promotional Banner */}
         <Paper sx={{ 
           bgcolor: '#1A1A1A', color: 'white', 
           p: { xs: 4, md: 8 }, mb: isMobile ? 6 : 10,
@@ -125,7 +136,7 @@ export default function HomePage() {
           </Box>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center', zIndex: 2 }}>
             <Box component="img" 
-             
+              src="https://purepng.com/public/uploads/large/purepng.com-shopping-bagshoppingbagshoppingshop-14215265481745v6z3.png"
               sx={{ 
                 width: '100%', 
                 maxWidth: isMobile ? '220px' : '380px', 
@@ -141,7 +152,7 @@ export default function HomePage() {
           }} />
         </Paper>
 
-    
+        {/* 5. Trust Bar */}
         <Grid 
           container 
           spacing={4} 
