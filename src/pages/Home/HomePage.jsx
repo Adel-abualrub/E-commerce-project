@@ -11,6 +11,7 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 
+// صور الـ Slider (Hero Section)
 const bannerImages = [
   "https://images.unsplash.com/photo-1491933382434-500287f9b54b?q=80&w=2000&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop",
@@ -23,14 +24,10 @@ export default function HomePage() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const isTablet = useMediaQuery(theme.breakpoints.down('md'));
 
-  const SectionHeader = ({ title, subtitle, center = false }) => (
-    <Box sx={{ mb: isMobile ? 3 : 5, textAlign: center ? 'center' : 'left' }}>
-      <Stack 
-        direction="row" 
-        alignItems="center" 
-        spacing={2} 
-        sx={{ mb: 1, justifyContent: center ? 'center' : 'flex-start' }}
-      >
+  // مكون فرعي للهيدر الأحمر (لضمان بقائه في مكانه الطبيعي)
+  const SectionHeader = ({ title, subtitle }) => (
+    <Box sx={{ mb: isMobile ? 3 : 5, textAlign: 'left' }}>
+      <Stack direction="row" alignItems="center" spacing={2} sx={{ mb: 1, justifyContent: 'flex-start' }}>
         <Box sx={{ width: isMobile ? 12 : 20, height: isMobile ? 24 : 40, bgcolor: '#db4444', borderRadius: 1 }} />
         <Typography variant="subtitle1" sx={{ color: '#db4444', fontWeight: 'bold' }}>{t(subtitle)}</Typography>
       </Stack>
@@ -44,7 +41,7 @@ export default function HomePage() {
       {/* 1. Hero Slider with Padding */}
       <Box sx={{ 
         mb: isMobile ? 4 : 8, 
-        px: { xs: 2, md: 5 }, // إضافة Padding جانبي للهيرو
+        px: { xs: 2, md: 5 }, // إضافة Padding جانبي للهيرو ليعطي مساحة "تنفس"
         pt: { xs: 2, md: 4 }  // إضافة Padding علوي للهيرو
       }}>
         <Swiper
@@ -93,18 +90,22 @@ export default function HomePage() {
 
       <Container maxWidth="lg">
         
-        {/* 2. Categories */}
+        {/* 2. Categories Section */}
         <Box sx={{ mb: isMobile ? 6 : 10 }}>
           <SectionHeader title="Categories" subtitle="TodaySubtitle" />
           <Categores />
         </Box>
 
-        {/* 3. Products Section - Centered */}
+        {/* 3. Products Section - Centered Products, Natural Header */}
         <Box sx={{ mb: isMobile ? 6 : 10 }}>
-          <SectionHeader title="ExploreProducts" subtitle="OurProductsSubtitle" center />
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          {/* شلنا خاصية center عشان يضل الهيدر مكانه (على الشمال في الإنجليزي) */}
+          <SectionHeader title="ExploreProducts" subtitle="OurProductsSubtitle" />
+          
+          {/* التوسيط هون فقط للمنتجات نفسها */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
             <Products />
           </Box>
+
           <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
             <Button component={Link} to='/products' variant="contained"
               sx={{ bgcolor: '#db4444', color: 'white', px: 6, py: 1.5, fontWeight: 'bold' }}>
@@ -113,7 +114,7 @@ export default function HomePage() {
           </Box>
         </Box>
 
-        {/* 4. Promotional Banner */}
+        {/* 4. Promotional Banner - Special Offer (No Image) */}
         <Paper sx={{ 
           bgcolor: '#1A1A1A', color: 'white', 
           p: { xs: 4, md: 8 }, mb: isMobile ? 6 : 10,
@@ -134,25 +135,16 @@ export default function HomePage() {
               {t('ShopNow')}
             </Button>
           </Box>
-          <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center', zIndex: 2 }}>
-            <Box component="img" 
-              src="https://purepng.com/public/uploads/large/purepng.com-shopping-bagshoppingbagshoppingshop-14215265481745v6z3.png"
-              sx={{ 
-                width: '100%', 
-                maxWidth: isMobile ? '220px' : '380px', 
-                height: 'auto',
-                filter: 'drop-shadow(0 10px 30px rgba(219, 68, 68, 0.4))',
-                transform: isMobile ? 'none' : 'perspective(1000px) rotateY(-10deg)'
-              }} 
-            />
-          </Box>
+          
+          {/* تم إزالة قسم الصورة هنا لعدم عمل الرابط */}
+    
           <Box sx={{
             position: 'absolute', top: '-10%', right: '-5%', width: '400px', height: '400px',
             bgcolor: 'rgba(219, 68, 68, 0.15)', filter: 'blur(100px)', borderRadius: '50%'
           }} />
         </Paper>
 
-        {/* 5. Trust Bar */}
+        {/* 5. Trust Bar (Features) */}
         <Grid 
           container 
           spacing={4} 
