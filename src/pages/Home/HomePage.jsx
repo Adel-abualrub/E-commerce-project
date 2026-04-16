@@ -84,7 +84,7 @@ export default function HomePage() {
 
       <Container maxWidth="lg">
         
-        {/* 2. Categories */}
+        {/* 2. Categories Section */}
         <Box sx={{ mb: isMobile ? 6 : 10 }}>
           <SectionHeader title="Categories" subtitle="TodaySubtitle" />
           <Categores />
@@ -125,7 +125,7 @@ export default function HomePage() {
           </Box>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center', zIndex: 2 }}>
             <Box component="img" 
-           
+              src="https://purepng.com/public/uploads/large/purepng.com-shopping-bagshoppingbagshoppingshop-14215265481745v6z3.png" 
               sx={{ 
                 width: '100%', 
                 maxWidth: isMobile ? '220px' : '380px', 
@@ -135,33 +135,41 @@ export default function HomePage() {
               }} 
             />
           </Box>
-    
           <Box sx={{
             position: 'absolute', top: '-10%', right: '-5%', width: '400px', height: '400px',
             bgcolor: 'rgba(219, 68, 68, 0.15)', filter: 'blur(100px)', borderRadius: '50%'
           }} />
         </Paper>
 
-       
-        <Grid container spacing={4} sx={{ py: 8 }}>
+        {/* 5. Trust Bar (Features) - الآن موسطة تماماً */}
+        <Grid 
+          container 
+          spacing={4} 
+          sx={{ py: 8 }} 
+          justifyContent="center" 
+          alignItems="center"
+        >
           {[
             { icon: <LocalShippingIcon />, title: 'FreeDelivery', desc: 'FreeDeliveryDesc' },
             { icon: <SupportAgentIcon />, title: 'CustomerService', desc: 'CustomerServiceDesc' },
             { icon: <VerifiedUserIcon />, title: 'MoneyBack', desc: 'MoneyBackDesc' },
           ].map((feature, i) => (
-            <Grid item xs={12} sm={6} md={4} key={i}>
-              <Stack alignItems="center" spacing={2}>
+            <Grid item xs={12} sm={6} md={4} key={i} sx={{ display: 'flex', justifyContent: 'center' }}>
+              <Stack alignItems="center" spacing={2} sx={{ width: '100%', maxWidth: '300px' }}>
                 <Box sx={{ 
                   p: 2, borderRadius: '50%', bgcolor: 'grey.300',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  transition: '0.3s', '&:hover': { bgcolor: '#db4444', '& svg': { color: 'white' } }
+                  transition: '0.3s', 
+                  '&:hover': { bgcolor: '#db4444', '& svg': { color: 'white' } }
                 }}>
                   <Box sx={{ bgcolor: 'black', color: 'white', p: 1.5, borderRadius: '50%', display: 'flex' }}>
                     {React.cloneElement(feature.icon, { sx: { fontSize: 35 } })}
                   </Box>
                 </Box>
-                <Typography variant="h6" fontWeight="bold" align="center">{t(feature.title)}</Typography>
-                <Typography variant="body2" color="text.secondary" align="center" sx={{ maxWidth: '250px' }}>
+                <Typography variant="h6" fontWeight="bold" align="center">
+                  {t(feature.title)}
+                </Typography>
+                <Typography variant="body2" color="text.secondary" align="center">
                   {t(feature.desc)}
                 </Typography>
               </Stack>
