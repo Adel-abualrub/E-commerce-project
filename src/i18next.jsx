@@ -33,6 +33,7 @@ i18n.use(initReactI18next).init({
         Enteryourdetailsbelow: "Enter your details below",
         UserName: "User Name",
         email: "Email",
+        GoToCart:"الذهاب الى السلة",
         password: "Password",
         phoneNumber: "Phone Number",
         fullName: "Full Name",
@@ -145,6 +146,7 @@ CustomerService: "24/7 CUSTOMER SERVICE",
 CustomerServiceDesc: "Friendly 24/7 customer support",
 MoneyBack: "MONEY BACK GUARANTEE",
 MoneyBackDesc: "We return money within 30 days",
+  noProducts: "No products found matching these filters."
       },
     },
 
@@ -290,7 +292,8 @@ FreeDeliveryDesc: "توصيل مجاني لجميع الطلبات فوق $140",
 CustomerService: "خدمة عملاء 24/7",
 CustomerServiceDesc: "دعم فني ودود على مدار الساعة",
 MoneyBack: "ضمان استرجاع الأموال",
-MoneyBackDesc: "نعيد الأموال خلال 30 يوماً"
+MoneyBackDesc: "نعيد الأموال خلال 30 يوماً",
+noProducts:"لا توجد منتجات تطابق هذه الفلاتر."
       },
     },
   },

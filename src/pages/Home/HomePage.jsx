@@ -84,13 +84,13 @@ export default function HomePage() {
 
       <Container maxWidth="lg">
         
-        {/* 2. Categories Section */}
+     
         <Box sx={{ mb: isMobile ? 6 : 10 }}>
           <SectionHeader title="Categories" subtitle="TodaySubtitle" />
           <Categores />
         </Box>
 
-        {/* 3. Products Section */}
+       
         <Box sx={{ mb: isMobile ? 6 : 10 }}>
           <SectionHeader title="ExploreProducts" subtitle="OurProductsSubtitle" />
           <Products />
@@ -125,7 +125,7 @@ export default function HomePage() {
           </Box>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'center', zIndex: 2 }}>
             <Box component="img" 
-              src="https://purepng.com/public/uploads/large/purepng.com-shopping-bagshoppingbagshoppingshop-14215265481745v6z3.png" 
+             
               sx={{ 
                 width: '100%', 
                 maxWidth: isMobile ? '220px' : '380px', 
@@ -141,7 +141,7 @@ export default function HomePage() {
           }} />
         </Paper>
 
-        {/* 5. Trust Bar (Features) - الآن موسطة تماماً */}
+    
         <Grid 
           container 
           spacing={4} 

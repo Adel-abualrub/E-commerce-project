@@ -134,7 +134,7 @@ Navigate('/Login')
   }
 }}
                   >
-                    Add to Cart
+                   {t('AddToCart')}
                   </Button>
 
                    
@@ -145,7 +145,7 @@ Navigate('/Login')
                     component={Link}
                     to="/cart"
                   >
-                    Go to Cart
+                    {t('GoToCart')}
                   </Button>
                 </Stack>
 

@@ -6,10 +6,12 @@ import useProducts from "../../hook/useProducts";
 import Product from "../../ui/product/Product";
 import FilterComponent from "../FilterComponent/FilterComponent";
 import { useLocation } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 
 export default function Products() {
   const { data, isLoading, isError, error } = useProducts();
 const location =useLocation();
+const { t } = useTranslation();
 
   if (isError) return (
     <Box color="red" p={4}>{error.message}</Box>
@@ -18,7 +20,7 @@ const location =useLocation();
   return (
     <Box sx={{ p: { xs: 2, md: 4 } }}>
       <Typography component="h3" variant="h4" color="error" fontWeight="bold" mb={4}>
-        Our Products
+       {t('OurProductsSubtitle')}
       </Typography>
 
       <Grid container spacing={3}>
@@ -45,7 +47,7 @@ const location =useLocation();
               {data?.response?.data?.length === 0 && (
                 <Box sx={{ display: 'flex', justifyContent: 'center', py: 5 }}>
                   <Typography variant="h6" color="text.secondary">
-                    No products found matching these filters.
+                   {t('noProducts')}
                   </Typography>
                 </Box>
               )}

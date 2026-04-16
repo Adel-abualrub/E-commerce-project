@@ -5,8 +5,10 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import useAddToCart from '../../hook/useAddToCart';
 import useAuthStore from '../../store/useAuthStore';
 import Login from './../../pages/Login/Login';
+import { useTranslation } from 'react-i18next';
 
 export default function Product({ product }) {
+ const { t } = useTranslation();
   const { mutate:AddToCart, isPending } = useAddToCart();
   const Navigate=useNavigate();
   const token=useAuthStore((state)=>state.token)
@@ -62,7 +64,7 @@ export default function Product({ product }) {
             }}
             
           >
-            Add to Cart
+            {t('AddToCart')}
           </Button>
 
         </CardContent>
